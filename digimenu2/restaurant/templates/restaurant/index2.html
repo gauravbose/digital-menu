@@ -1,0 +1,32 @@
+<html>
+<head><style>body {
+    background-color: #d0e4fe;
+}</style></head>
+<body>
+
+<center>
+<h1>Our Cuisines</h1><br>
+{% if latest_question_list %}
+    <table>
+    {% for question in latest_question_list %}
+        <tr><td>{{ question.cuisine_name }}</a></td></tr>
+    {% endfor %}
+    </table><br><br>
+{% else %}
+    <p>No polls are available.</p>
+{% endif %}
+{% if l %}
+<h1>Menu</h1>
+    <table><tr><td>Menu Item</td><td>Price</td><td>Cuisine</td></tr>
+    {% for question in l %}
+        <tr><td>{{question.menu_item}}</a></td><td>{{ question.price }}</td><td>{{question.cuisine_name_id}}</td></tr>
+    {% endfor %}
+    </table>
+{% else %}
+    <p>No polls are available.</p>
+{% endif %}
+
+</center>
+</body>
+</html>
+

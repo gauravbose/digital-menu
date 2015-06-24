@@ -1,13 +1,27 @@
+from django.contrib import admin
 from django.db import models
-
+from PIL import Image 
 # Create your models here.
 
 class Cuisine(models.Model):
     cuisine_name = models.CharField(primary_key = True , max_length=200)
+    image_path= models.CharField(max_length=100)
+
     def __str__(self):
         return self.cuisine_name
 
-    
+class Image(models.Model):
+	cuisine = models.ForeignKey(Cuisine)
+	image =models.ImageField(upload_to='images',verbose_name='My Photo')
+
+class InlineImage(admin.TabularInline):
+      model=Image
+
+class CuisineAdmin(admin.ModelAdmin):
+	inlines=[InlineImage]
+
+admin.site.register(Cuisine,CuisineAdmin)   
+ 
 class Menu(models.Model):
     menu_item = models.CharField(primary_key = True , max_length =200)
     price = models.IntegerField()

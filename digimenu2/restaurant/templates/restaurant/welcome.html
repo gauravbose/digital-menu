@@ -1,0 +1,36 @@
+<html>
+<head>
+<script>
+function validate(){
+ var x = document.forms["f1"]["Mobile_no"].value;
+ if(x==null || x=="")
+  {
+   alert("Please enter mobile number!");
+   return false;
+  }
+else if(isNaN(x)||(x.length!=10))
+  {
+   alert("Invalid mobile number!");
+   return false;
+  }
+  
+ 
+} 
+</script>
+<style>body {
+    background-color: #d0e4fe;
+}</style>
+</head>
+<body>
+<center><h1>Enter Mobile No.</h1>
+{% load staticfiles %}
+<img src= {% static path %} alt="My image"/>
+<a href="index.html">abcdef</a>
+<form name="f1" action="index.html" method="get" onsubmit="return validate()" >{% csrf_token %}
+<input type="text" name="Mobile_no" id="mno"><br><br>
+{{path}}
+<input type="submit" value="SUBMIT">
+</form>
+</center>
+</body>
+</html>

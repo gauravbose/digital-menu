@@ -1,0 +1,30 @@
+<html>
+<head></head>
+<body>
+
+<center>
+<h1>Our Cuisines</h1><br>
+{% if latest_question_list %}
+    <table>
+    {% for question in latest_question_list %}
+        <tr><td><a href="welcome.html">{{ question.cuisine_name }}</a></td></tr>
+    {% endfor %}
+    </table>
+{% else %}
+    <p>No polls are available.</p>
+{% endif %}
+{% if l %}
+    <table>
+    {% for question in l %}
+        <tr><td><a href="welcome.html">{{question.menu_item}}{{ question.price }}{{question.cuisine_name_id}}</a></td></tr>
+    {% endfor %}
+    </table>
+{% else %}
+    <p>No polls are available.</p>
+{% endif %}
+{% load staticfiles %}
+<img src={{path}} alt="img01" height="500" width="800"/>
+</center>
+</body>
+</html>
+
