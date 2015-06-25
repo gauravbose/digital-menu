@@ -7,11 +7,13 @@
 <center>
 <h1>Our Cuisines</h1><br>
 {% if latest_question_list %}
-    <table>
+    <center>
     {% for question in latest_question_list %}
-        <tr><td>{{ question.cuisine_name }}</a></td></tr>
+        {{ question.cuisine_name }}<br>
+        {% load staticfiles %}
+        <img src={% static question.image_path %} alt={{question.cuisine_name}} height="500" width="800"><br><br>
     {% endfor %}
-    </table><br><br>
+    </center><br><br>
 {% else %}
     <p>No polls are available.</p>
 {% endif %}

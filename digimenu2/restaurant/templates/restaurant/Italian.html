@@ -6738,6 +6738,7 @@ footer {
     </nav>
 
     <!-- Page Content -->
+
     <div class="container">
 
         <div class="row">
@@ -6784,7 +6785,7 @@ footer {
 
                 </div>
 
-                <div class="row">
+<!--                <div class="row">
 
                     <div class="col-sm-4 col-lg-4 col-md-4">
                         <div class="thumbnail">
@@ -6806,18 +6807,26 @@ footer {
                                     <span class="glyphicon glyphicon-star"></span>
                                 </p>
                             </div>-->
-                        </div>
-                    </div>
+<!--                        </div>
+                    </div>  -->
+
+
+
+{% if latest_question_list %}
+    
+    {% for question in latest_question_list %}
+
+    
 
                     <div class="col-sm-4 col-lg-4 col-md-4">
                         <div class="thumbnail">
 				{% load staticfiles %}
-                            <img src="{% static "restaurant/image_italian/1.jpg"%}" alt="">
+                            <img src={% static question.image_path %} alt="">
                             <div class="caption">
-                                <h4 class="pull-right">$30.99</h4>
-                                <h4><a href="#">vegetable pizza</a>
+                                <h4 class="pull-right">${{ question.price }}</h4>
+                                <h4><a href="#">{{ question.menu_item }}</a>
                                 </h4>
-                                <p>This is a short description. Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+                                <p>{{ question.description }}</p>
                             </div>
                             <!--<div class="ratings">
                                 <p class="pull-right">12 reviews</p>
@@ -6832,7 +6841,15 @@ footer {
                         </div>
                     </div>
 
-                    <div class="col-sm-4 col-lg-4 col-md-4">
+
+{% endfor %}
+    <br><br>
+{% else %}
+    <p>No polls are available.</p>
+{% endif %}
+
+
+<!--                    <div class="col-sm-4 col-lg-4 col-md-4">
                         <div class="thumbnail">
                             {% load staticfiles %}
                             <img src="{% static "restaurant/image_italian/5.jpg"%}" alt="">
@@ -6852,7 +6869,7 @@ footer {
                                     <span class="glyphicon glyphicon-star-empty"></span>
                                 </p>
                             </div>-->
-                        </div>
+<!--                        </div>
                     </div>
 
                     <div class="col-sm-4 col-lg-4 col-md-4">
@@ -6875,7 +6892,7 @@ footer {
                                     <span class="glyphicon glyphicon-star-empty"></span>
                                 </p>
                             </div>-->
-                        </div>
+<!--                        </div>
                     </div>
 
                     <div class="col-sm-4 col-lg-4 col-md-4">
@@ -6898,7 +6915,7 @@ footer {
                                     <span class="glyphicon glyphicon-star-empty"></span>
                                 </p>
                             </div>-->
-                        </div>
+<!--                        </div>
 					</div>
 					
 					<div class="col-sm-4 col-lg-4 col-md-4">
@@ -6921,7 +6938,7 @@ footer {
                                     <span class="glyphicon glyphicon-star-empty"></span>
                                 </p>
                             </div>-->
-                        </div>
+<!--                        </div>
 					</div>
 
                     <!--<div class="col-sm-4 col-lg-4 col-md-4">

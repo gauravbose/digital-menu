@@ -27,6 +27,7 @@ class Menu(models.Model):
     price = models.IntegerField()
     description = models.TextField()
     cuisine_name = models.ForeignKey(Cuisine)
+    image_path= models.CharField(max_length=100)
     def __str__(self):
         return self.menu_item
 

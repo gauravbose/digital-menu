@@ -13354,18 +13354,33 @@ button.close {
 <div id="works"  class=" clearfix grid"> 
     <!--<figure class="effect-oscar  wowload fadeIn">-->
 <br><br><br><br><br><br>
-		<a href ="index_starters.html">
+{% if latest_question_list %}
+    
+    {% for question in latest_question_list %}
+        <h2>{{ question.cuisine_name }}</h2><br>
+
+		<a href ={{ question.cuisine_name }}.html>
 	{% load staticfiles %}
-        <img src="{% static "restaurant/1.jpg"%}" alt="img01" height="500" width="800"/>
+        <img src={% static question.image_path %} alt="img01" height="500" width="800"/>
 		</a>
+          <br><br><br><br>
         <figcaption>
-            <h2>Starters</h2>
+            
             <br>
-            <a href="images/portfolio/1.jpg" title="1" data-gallery>View more</a>            
+            <!--<a href="images/portfolio/1.jpg" title="1" data-gallery>View mo<r/ea> -->           
         </figcaption>
+    {% endfor %}
+    <br><br>
+{% else %}
+    <p>No polls are available.</p>
+{% endif %}
+
+
+
+
     <!--</figure>-->
      <!--<figure class="effect-oscar  wowload fadeInUp">-->
-		<a href ="index_indian.html">
+<!--		<a href ="index_indian.html">
         {% load staticfiles %}
         <img src="{% static "restaurant/2.jpg"%}" alt="img02" height="500" width="800"/>
 		</a>
@@ -13376,7 +13391,7 @@ button.close {
         </figcaption>
     <!--</figure>-->
      <!--<figure class="effect-oscar  wowload fadeInUp">-->
-        <a href ="index_southindian.html">
+ <!--       <a href ="index_southindian.html">
 	{% load staticfiles %}
         <img src="{% static "restaurant/3.jpg"%}" alt="img01" height="500" width="800"/>
 		</a>
@@ -13395,7 +13410,7 @@ button.close {
         </figcaption>
     </figure>-->
      <!--<figure class="effect-oscar  wowload fadeInUp">-->
-        <a href="index_italian.html">
+  <!--      <a href="index_italian.html">
 		{% load staticfiles %}
 		<img src="{% static "restaurant/13.jpg"%}" alt="img01"/height="500" width="800">
 		</a>
@@ -13407,7 +13422,7 @@ button.close {
     <!--</figure>-->
      
      <!--<figure class="effect-oscar  wowload fadeInUp">-->
-		<a href ="index_chaat.html">
+   <!--		<a href ="index_chaat.html">
 			{% load staticfiles %}
 			<img src="{% static "restaurant/6.jpg"%}" alt="img01" height="500" width="800"/>
 		</a>	
@@ -13418,7 +13433,7 @@ button.close {
         </figcaption>
     <!--</figure>-->
     <!--<figure class="effect-oscar  wowload fadeInUp">-->
-	<a href ="index_chinese.html">
+<!--	<a href ="index_chinese.html">
 	{% load staticfiles %}
         <img src="{% static "restaurant/7.jpg"%}" alt="img01" height="500" width="800"/>
 	</a>	
@@ -13429,7 +13444,7 @@ button.close {
         </figcaption>
     <!--</figure>-->
     <!--<figure class="effect-oscar  wowload fadeInUp">-->
-        <a href ="index_desserts.html">
+ <!--       <a href ="index_desserts.html">
 	{% load staticfiles %}
         <img src="{% static "restaurant/8.jpg"%}" alt="img01" height="500" width="800"/>
 		</a>
@@ -13440,7 +13455,7 @@ button.close {
         </figcaption>
     <!--</figure>-->
     <!--<figure class="effect-oscar  wowload fadeInUp">-->
-        <a href ="index_coffee.html">
+<!--        <a href ="index_coffee.html">
 	{% load staticfiles %}
         <img src="{% static "restaurant/9.jpg"%}" alt="img01" height="500" width="800"/>
 		</a>
@@ -13449,6 +13464,7 @@ button.close {
             <br>
             <a href="images/portfolio/9.jpg" title="1" data-gallery>View more</a>            
         </figcaption>
+	-->
     <!--</figure>-->
     <!--<figure class="effect-oscar  wowload fadeInUp">
         <img src="images/portfolio/10.jpg" alt="img01"/>
