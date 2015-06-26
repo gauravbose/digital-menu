@@ -7065,7 +7065,7 @@ a:hover {
 			<div class="container">
 				<a class="navbar-brand" href="#">Your Order</a>
 				<div class="navbar-right">
-					<div class="container minicart">{% load staticfiles %}<img src="{% static "restaurant/cart.jpg"%}"></div>
+					<div class="container minicart"><!--{% load staticfiles %}<img src="{% static "restaurant/cart.jpg"%}">--></div>
 				</div>
 			</div>
 		</nav>
@@ -7078,7 +7078,7 @@ a:hover {
 			</ol>
 		</div>
 		
-		<div class="container text-center">
+		<div class="container text-center"> 
 
 			<!--<div class="col-md-5 col-sm-12">
 				<div class="bigcart"></div>
@@ -7097,17 +7097,30 @@ a:hover {
 			<div class="col-md-7 col-sm-12 text-left">
 				<ul>
 					<li class="row list-inline columnCaptions">
-						<span>QTY</span>
-						<span>ITEM</span>
+						<span>Quantity</span>
+						<span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Item</span>
 						<span>Price</span>
 					</li>
+
+{% if latest_question_list %}
+    
+    {% for question in latest_question_list %}
+
+
 					<li class="row">
-						<span class="quantity">1</span>
-						<span class="itemName">Birthday Cake</span>
-						<span class="popbtn"><a class="arrow"></a></span>
-						<span class="price">$49.95</span>
+						<span class="quantity">{{ question.quantity}}</span>
+						<span class="itemName">&nbsp; &nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{{ question.item_name}}</span>
+	<!--					<span class="popbtn"><a class="arrow"></a></span>  -->
+						<span class="price">${{ question.price }} &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+</span>
 					</li>
-					<li class="row">
+
+{% endfor %}
+{% else %}
+    <p>No polls are available.</p>
+{% endif %}
+
+			<!--		<li class="row">
 						<span class="quantity">50</span>
 						<span class="itemName">Party Cups</span>
 						<span class="popbtn"><a class="arrow"></a></span>
@@ -7130,16 +7143,16 @@ a:hover {
 						<span class="itemName">Bullet-proof vest</span>
 						<span class="popbtn"  data-parent="#asd" data-toggle="collapse" data-target="#demo"><a class="arrow"></a></span>
 						<span class="price">$450.00</span>				
-					</li>
+					</li> -->
 					<li class="row totals">
 						<span class="itemName">Total:</span>
-						<span class="price">$1694.43</span>
+						<span class="price">${{Total}}</span>
 						<span class="order"> <a class="text-center">ORDER</a></span>
-					</li>
+					</li> 
 				</ul>
 			</div>
 
-		</div>
+		</div> 
 		
 
 		<!-- The popover content -->

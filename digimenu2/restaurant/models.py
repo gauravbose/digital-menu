@@ -51,6 +51,8 @@ class Cart(models.Model):
     item_name = models.CharField(max_length = 200)
     quantity = models.IntegerField(default=0)
     price = models.IntegerField()
+    def __str__(self):
+        return self.item_name
 
     
 class Cartlist(models.Model):

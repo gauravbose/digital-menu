@@ -15,6 +15,6 @@ urlpatterns=[
     url(r'^$',views.desserts,name='desserts'),
     url(r'^$',views.beverages,name='beverages'),
     url(r'^$',views.southindian,name='southindian'),
-	url(r'^$',views.chaat,name='chaat'),
+    url(r'^$',views.chaat,name='chaat'),
     url(r'^$',views.cart,name='cart'),
 ]
