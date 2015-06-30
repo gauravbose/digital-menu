@@ -5,6 +5,9 @@ from django.template import Context,loader,RequestContext
 from django.template.context_processors import csrf
 from django.shortcuts import render_to_response
 from django import template
+from restaurant.forms import NameForm
+from django.db import connection
+from django import forms
 register = template.Library()
 
 #@register.filter
@@ -12,6 +15,8 @@ register = template.Library()
 #    return s.split(splitter)
 
 # Create your views here.
+
+
 def index(request):
     output=Cuisine.objects.all()
     #y=Menu.objects.all()
@@ -28,7 +33,7 @@ def index(request):
 def indian(request):
     output=Cuisine.objects.all()
     y=Menu.objects.all()
-    t=loader.get_template('restaurant/index_indian.html')
+    t=loader.get_template('restaurant/Indian.html')
     dict={"one":"first","two":"second","three":"third","path":'{% static "restaurant/1.jpg" %}'}
     #s="ASCII"
     con=Context()
@@ -106,6 +111,10 @@ def italian(request):
     dict={"one":"first","two":"second","three":"third","path":'{% static "restaurant/1.jpg" %}'}
     #s="ASCII"
     con=Context()
+    a=request.POST.get('item') # => [39]
+    if a is not None:
+        cursor=connection.cursor()
+        cursor.execute("insert into restaurant_cart values(DEFAULT,'"+a+"',2,3);")
     c=RequestContext(request, {
         'latest_question_list': output
     })
@@ -115,6 +124,9 @@ def italian(request):
 def welcome(request):
     output=Cart.objects.all()
     #c = {}
+    a=request.POST.get('item') # => [39]
+  #  cursor=connection.cursor()
+  #  cursor.execute("insert into restaurant_cart values(93,'"+a+"',2,3);") 
     #c.update(csrf(request))
     t=loader.get_template('restaurant/welcome.html')
     dict={"path":"restaurant/13.jpg"}
@@ -122,7 +134,7 @@ def welcome(request):
     for i in output:
        total=total+(i.price)
     c=RequestContext(request, {
-        'latest_question_list': output,'Total':total
+        'latest_question_list': output,'Total':total,'a':a
     })
     return HttpResponse(t.render(c))       
 #return render_to_response("welcome.html", c)
@@ -139,6 +151,8 @@ def cart(request):
     c=RequestContext(request, {
         'latest_question_list': output,'Total':total
     })
+     
+	
     #o=', '.join([p.cuisine_name for p in output])
     return HttpResponse(t.render(c))
 
@@ -149,4 +163,25 @@ def main(request):
 def detail(request):
     i = get_object_or_404(Cuisine, pk=1)
     return render_to_response('restaurant/detail.html', {'album':album})
+
+def post_form_upload(request):
+    if request.method == 'GET':
+        form = PostForm()
+    else:
+        # A POST request: Handle Form Upload
+        form = PostForm(request.POST) # Bind data from request.POST into a PostForm
+ 
+        # If data is valid, proceeds to create a new post and redirect the user
+        if form.is_valid():
+            content = form.cleaned_data['content']
+            #created_at = form.cleaned_data['created_at']
+            post = m.Post.objects.create(content=content)
+            return HttpResponseRedirect(reverse('post_detail',
+                                                kwargs={'post_id': post.id}))
+ 
+    return render(request, 'post/post_form_upload.html', {
+        'form': form,
+    })
+
+
 

@@ -45,17 +45,14 @@ class User(models.Model):
     password = models.CharField(primary_key = True ,max_length=7)
     bill_id = models.IntegerField()
 
-
 class Cart(models.Model):
-    cart_id = models.IntegerField(primary_key = True)
+ 
     item_name = models.CharField(max_length = 200)
     quantity = models.IntegerField(default=0)
     price = models.IntegerField()
     def __str__(self):
         return self.item_name
 
+
     
-class Cartlist(models.Model):
-    bill_id = models.ForeignKey(User)
-    cart_id = models.ForeignKey(Cart)
    

@@ -28,5 +28,6 @@ urlpatterns = patterns('',
     url(r'^restaurant/index/Beverages.*$','restaurant.views.beverages'),
     url(r'^restaurant/welcome.*$','restaurant.views.welcome'),
     url(r'^restaurant/index/cart.*$','restaurant.views.cart'),
-    url(r'^restaurant/index/index.*$','restaurant.views.index'),
+    url(r'^restaurant/welcome/index.*$','restaurant.views.index'),
+    url(r'^restaurant/index/welcome.*$','restaurant.views.welcome'),
 )

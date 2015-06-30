@@ -26,9 +26,9 @@ else if(isNaN(x)||(x.length!=10))
 {% load staticfiles %}
 <img src= {% static path %} alt="My image"/>
 <a href="index.html">abcdef</a>
-<form name="f1" action="index.html" method="get" onsubmit="return validate()" >{% csrf_token %}
+<form name="f1" action="index.html" method="post">  onsubmit="return validate()" {% csrf_token %}
 <input type="text" name="Mobile_no" id="mno"><br><br>
-{{path}}{{Total}}
+{{path}}{{Total}} {{a}}
 <input type="submit" value="SUBMIT">
 </form>
 </center>

@@ -7120,6 +7120,18 @@ a:hover {
     <p>No polls are available.</p>
 {% endif %}
 
+
+
+
+<form action="/restaurant/index/" method="get">{% csrf_token %}
+    <label for="your_name">Your name: </label>
+    <input id="your_name" type="text" name="your_name" value="{{ Total }}">
+    <input type="submit" value="OK">
+</form>
+
+
+
+
 			<!--		<li class="row">
 						<span class="quantity">50</span>
 						<span class="itemName">Party Cups</span>

@@ -6833,7 +6833,11 @@ footer {
                                 <h4><a href="#">{{ question.menu_item }}</a>
                                 </h4>
                                 <p>{{ question.description }}</p>
-				<button type="button" onclick="alert('Cart is not ready')">Add to Cart</button>
+				   <form action="Italian.html" method="post">{% csrf_token %}
+  
+  <button name="item" type="submit" onclick="alert('{{question.menu_item}}'+' added to cart!!!')" value={{ question.menu_item }}>Add To Cart</button>
+ 
+	    				   </form>
                             </div>
                             <!--<div class="ratings">
                                 <p class="pull-right">12 reviews</p>
