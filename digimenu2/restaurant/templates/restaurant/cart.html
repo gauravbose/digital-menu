@@ -6774,6 +6774,7 @@ a:hover {
 	padding-left: 15px;
 	background-color: #ffffff;
 	margin-bottom: 11px;
+        width:1000px;
 }
 
 .row span{
@@ -6830,7 +6831,7 @@ a:hover {
 	background-color: #e6edf3;
 	margin-left: 25px;
 	height: 63px;
-	width: 40px;
+	width: 100px;
 	padding: 32px 0 0 14px !important;
 	float: right;
 	cursor: pointer;
@@ -7087,10 +7088,12 @@ a:hover {
 					This is a free and <b><a href="http://tutorialzine.com/2014/04/responsive-shopping-cart-layout-twitter-bootstrap-3/" title="Read the article!">responsive shopping cart layout, made by Tutorialzine</a></b>. It looks nice on both desktop and mobile browsers. Try it by resizing your window (or opening it on your smartphone and pc).
 				</p>
 			</div>-->
+
 			<div class="row">
+
 				<div class="col-sm-4" ></div>
 				<div class="col-sm-4" ></div>
-				<a class="col-md-4 col-sm-4 text-right btn btn-success btn-lg active pull-center-right" href="index.html" role="button">back to menu</a>
+				<a class="col-md-4 col-sm-4 text-right btn btn-primary btn-lg active pull-center-right" href="index.html" role="button">Back to Menu</a>
 		
 			</div>
 			
@@ -7099,7 +7102,15 @@ a:hover {
 					<li class="row list-inline columnCaptions">
 						<span>Quantity</span>
 						<span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Item</span>
-						<span>Price</span>
+						<span>Price&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
 					</li>
 
 {% if latest_question_list %}
@@ -7110,24 +7121,45 @@ a:hover {
 					<li class="row">
 						<span class="quantity">{{ question.quantity}}</span>
 						<span class="itemName">&nbsp; &nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{{ question.item_name}}</span>
-	<!--					<span class="popbtn"><a class="arrow"></a></span>  -->
+						<!--<span class="popbtn"><a class="arrow"></a></span>--> 
+	<span class="popbtn">{% with n=question.item_name.split|join:"_" %}
+	    <form action="cart.html" method="post">{% csrf_token %}	
+		<button name="delete" onclick="alert('{{question.item_name}}'+' is deleted from the cart!!!')" value={{ n }}>Delete</button>
+            </form>              
+			     {% endwith %}</span>
+        <span class="popbtn">{% with n=question.item_name.split|join:"_" %}
+	    <form action="cart.html" method="post">{% csrf_token %}	
+		<button name="add" value={{ n }}>Add Qty</button>
+            </form>              
+			     {% endwith %}</span>				
+	 <span class="popbtn">{% with n=question.item_name.split|join:"_" %}
+	    <form action="cart.html" method="post">{% csrf_token %}	
+		<button name="dec"  value={{ n }}>Dec Qty</button>
+            </form>              
+			     {% endwith %}</span>				
+	
+       
 						<span class="price">${{ question.price }} &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
 </span>
-					</li>
+			  
+
+ <!--{% with n=question.item_name.split|join:"_" %}
+	<button name="delete" onclick="alert('{{question.item_name}}'+' is deleted from the cart!!!')" value={{ n }}>delete</button>
+  {% endwith %}-->
+					
+</li>
+
+                                         
+ 
+
 
 {% endfor %}
 {% else %}
-    <p>No polls are available.</p>
+    <h2>No items in cart.</h2>
 {% endif %}
 
 
 
-
-<form action="/restaurant/index/" method="get">{% csrf_token %}
-    <label for="your_name">Your name: </label>
-    <input id="your_name" type="text" name="your_name" value="{{ Total }}">
-    <input type="submit" value="OK">
-</form>
 
 
 
@@ -7159,7 +7191,7 @@ a:hover {
 					<li class="row totals">
 						<span class="itemName">Total:</span>
 						<span class="price">${{Total}}</span>
-						<span class="order"> <a class="text-center">ORDER</a></span>
+						<span class="order"> <a href='welcome.html' class="text-center">ORDER</a></span>
 					</li> 
 				</ul>
 			</div>

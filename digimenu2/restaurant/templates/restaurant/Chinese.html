@@ -6817,6 +6817,13 @@ footer {
 				<a class="col-md-4 col-sm-4 text-right btn btn-success btn-lg active pull-center-right" href="cart.html#" role="button">View Cart</a>
 		
 			</div>
+<br>
+<div class="row">
+				<div class="col-sm-4" ></div>
+				<div class="col-sm-4" ></div>
+				<a class="col-md-4 col-sm-4 text-right btn btn-primary btn-lg active pull-center-right" href="index.html#" role="button">Back to Menu</a>
+		
+			</div>
 <br><br><br>
 
 
@@ -6833,10 +6840,16 @@ footer {
                             <img src={% static question.image_path %} alt="img01" height="150" width="320"/>
                             <div class="caption">
                                 <h4 class="pull-right">${{ question.price }}</h4>
+					
                                 <h4><a href="#">{{ question.menu_item }}</a>
                                 </h4>
                                 <p>{{ question.description }}</p>
-				<button type="button" onclick="alert('Cart is not ready')">Add to Cart</button>
+				    <form action="Chinese.html" method="post">{% csrf_token %}
+  {% with n=question.menu_item.split|join:"_" %}
+<button name="item" type="submit" onclick="alert('{{question.menu_item}}'+'{{msg}}')" value={{ n }}>Add To Cart</button>
+{% endwith %} 
+	    				   </form>
+				
                             </div>
                             <!--<div class="ratings">
                                 <p class="pull-right">12 reviews</p>

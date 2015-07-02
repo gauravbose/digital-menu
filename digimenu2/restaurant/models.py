@@ -2,6 +2,9 @@ from django.contrib import admin
 from django.db import models
 from PIL import Image 
 # Create your models here.
+from django import template
+
+register = template.Library()
 
 class Cuisine(models.Model):
     cuisine_name = models.CharField(primary_key = True , max_length=200)
@@ -28,8 +31,17 @@ class Menu(models.Model):
     description = models.TextField()
     cuisine_name = models.ForeignKey(Cuisine)
     image_path= models.CharField(max_length=100)
+    def human_readable_state(self):
+        x=self.menu_item.replace('_', 'a')
+        return x
     def __str__(self):
         return self.menu_item
+    def __unicode__(self):
+        return self.menu_item.replace('_', ' ')
+    @register.filter(name='rem')
+    def rem(value, arg):
+        d=str(value).replace(arg, " ")
+        return d
 
 
 class Table(models.Model):
