@@ -7089,11 +7089,12 @@ a:hover {
 				</p>
 			</div>-->
 
+
 			<div class="row">
 
 				<div class="col-sm-4" ></div>
 				<div class="col-sm-4" ></div>
-				<a class="col-md-4 col-sm-4 text-right btn btn-primary btn-lg active pull-center-right" href="index.html" role="button">Back to Menu</a>
+				<a class="col-md-4 col-sm-4 text-right btn btn-primary btn-lg active pull-center-right" href="index" role="button">Back to Menu</a>
 		
 			</div>
 			
@@ -7123,23 +7124,23 @@ a:hover {
 						<span class="itemName">&nbsp; &nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{{ question.item_name}}</span>
 						<!--<span class="popbtn"><a class="arrow"></a></span>--> 
 	<span class="popbtn">{% with n=question.item_name.split|join:"_" %}
-	    <form action="cart.html" method="post">{% csrf_token %}	
+	    <form action="cart" method="post">{% csrf_token %}	
 		<button name="delete" onclick="alert('{{question.item_name}}'+' is deleted from the cart!!!')" value={{ n }}>Delete</button>
             </form>              
 			     {% endwith %}</span>
         <span class="popbtn">{% with n=question.item_name.split|join:"_" %}
-	    <form action="cart.html" method="post">{% csrf_token %}	
+	    <form action="cart" method="post">{% csrf_token %}	
 		<button name="add" value={{ n }}>Add Qty</button>
             </form>              
 			     {% endwith %}</span>				
 	 <span class="popbtn">{% with n=question.item_name.split|join:"_" %}
-	    <form action="cart.html" method="post">{% csrf_token %}	
+	    <form action="cart" method="post">{% csrf_token %}	
 		<button name="dec"  value={{ n }}>Dec Qty</button>
             </form>              
 			     {% endwith %}</span>				
 	
        
-						<span class="price">${{ question.price }} &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+						<span class="price">₹{{ question.price }} &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
 </span>
 			  
 
@@ -7190,7 +7191,7 @@ a:hover {
 					</li> -->
 					<li class="row totals">
 						<span class="itemName">Total:</span>
-						<span class="price">${{Total}}</span>
+						<span class="price">₹{{Total}}</span>
 						<span class="order"> <a href='welcome.html' class="text-center">ORDER</a></span>
 					</li> 
 				</ul>

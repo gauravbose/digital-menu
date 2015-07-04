@@ -5976,7 +5976,7 @@ button.close {
   left: 0;
   z-index: 1060;
   display: none;
-  max-width: 276px;
+  max-width: 500px;
   padding: 1px;
   font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
   font-size: 14px;
@@ -6701,6 +6701,13 @@ footer {
 
 
 </style>
+
+<meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+  <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+
 </head>
 
 <body>
@@ -6744,7 +6751,7 @@ footer {
         <div class="row">
 
             <div class="col-md-3">
-                <p class="lead">ITALIAN</p>
+                <p class="lead">{{cuisine}}</p>
                <!-- <div class="list-group">
                     <a href="#" class="list-group-item">Category 1</a>
                     <a href="#" class="list-group-item">Category 2</a>
@@ -6813,7 +6820,7 @@ footer {
 <div class="row">
 				<div class="col-sm-4" ></div>
 				<div class="col-sm-4" ></div>
-				<a class="col-md-4 col-sm-4 text-right btn btn-success btn-lg active pull-center-right" href="cart.html#" role="button">View Cart</a>
+				<a class="col-md-4 col-sm-4 text-right btn btn-danger btn-lg active pull-center-right" href="cart" role="button">View Cart</a>
 		
 			</div>
 <br>
@@ -6836,13 +6843,27 @@ footer {
 				{% load staticfiles %}
                             <img src={% static question.image_path %} alt="img01" height="150" width="320"/>
                             <div class="caption">
-                                <h4 class="pull-right">${{ question.price }}</h4>
+                                <h4 class="pull-right">₹{{ question.price }}</h4>
                                 <h4>{{ question.menu_item }}
                                 </h4>
-                                <p>{{ question.description }}</p>
-				   <form action="Italian.html" method="post">{% csrf_token %}
+                             <button class="btn btn-link btn-md">View Description</button>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    
+  {% with p=question.description %}     
+
+<script>
+$(document).ready(function(){
+    $('.btn-link').popover({title: "Description", content:"{{ p }}", trigger: "focus"}); 
+     
+});
+</script><br>
+{% endwith %}
+
+                               <!-- <p>{{ question.description }}</p> -->
+<!--<button class="btn btn-link btn-md"> </button>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;-->
+				   <form action="{{id}}" method="post">{% csrf_token %}
 {% with n=question.menu_item.split|join:"_" %}     
-<button name="item" type="submit" onclick="alert('{{question.menu_item}}'+'{{msg}}')" value={{ n }}>Add To Cart</button>
+<button name="item"  class="btn-success btn-lg" type="submit" onclick="alert('{{question.menu_item}}'+'{{msg}}')" value={{ n }}><strong>+ Add To Cart</strong></button>
+&nbsp;&nbsp;&nbsp;&nbsp;
 {% endwith %}
  
 	    				   </form>
@@ -6864,7 +6885,7 @@ footer {
 {% endfor %}
     <br><br>
 {% else %}
-    <p>No polls are available.</p>
+    <h2>No items available in this cuisine</h2>
 {% endif %}
 
 

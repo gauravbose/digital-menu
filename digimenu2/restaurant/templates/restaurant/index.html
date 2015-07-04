@@ -1,3 +1,4 @@
+{% load url from future %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -13334,7 +13335,7 @@ button.close {
 			<div class="row">
 				<div class="col-sm-4" ></div>
 				<div class="col-sm-4" ></div>
-				<a class="col-md-4 col-sm-4 text-right btn btn-success btn-lg active pull-center-right" href="cart.html#" role="button">View Cart</a>
+				<a class="col-md-4 col-sm-4 text-right btn btn-success btn-lg active pull-center-right" href="cart" role="button">View Cart</a>
 		
 			</div>
           </div>
@@ -13359,7 +13360,7 @@ button.close {
     {% for question in latest_question_list %}
         <h2>{{ question.cuisine_name }}</h2><br>
 
-		<a href ={{ question.cuisine_name }}.html>
+		<a href ={{ question.cuisine_id }}>
 	{% load staticfiles %}
         <img src={% static question.image_path %} alt="img01" height="500" width="800"/>
 		</a>
@@ -13372,7 +13373,7 @@ button.close {
     {% endfor %}
     <br><br>
 {% else %}
-    <p>No polls are available.</p>
+    <h2>No cuisines available</h2>
 {% endif %}
 
 

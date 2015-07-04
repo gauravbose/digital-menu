@@ -35,10 +35,10 @@ else if(isNaN(x)||(x.length!=10))
 {{ question.menu_item.split|join:"_" }}<br>
 {{ question.menu_item}}<br>
 {% endfor %}
-   
-{% else %}
+  {% else %}
     <p>No polls are available.</p>
 {% endif %}
+ <a href="{% url 'restaurant:Chaat' %}">qwerty</a>
 
 <input type="submit" value="SUBMIT">
 </form>

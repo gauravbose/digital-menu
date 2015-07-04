@@ -1,11 +1,16 @@
 from django.shortcuts import render
 from django.http import HttpResponse
-from .models import Menu,Cuisine,Image,Cart
+from django.http import HttpResponseRedirect
+from .models import Menu,Cuisine,Cart
 from django.template import Context,loader,RequestContext
 from django.template.context_processors import csrf
 from django.shortcuts import render_to_response
 from django import template
-from restaurant.forms import NameForm
+from restaurant.forms import NameForm,UserForm
+from django.contrib import auth
+from django.core.context_processors import csrf
+from django.contrib.auth.forms import UserCreationForm
+from forms import UserForm 
 from django.db import connection
 from django import forms
 #import easygui
@@ -18,7 +23,102 @@ register = template.Library()
 # Create your views here.
 
 
-def index(request):
+
+
+def register_user(request):
+	context = RequestContext(request)
+	registered = False
+	if request.method == 'POST':		
+	   user_form = UserForm(data=request.POST)
+	   if user_form.is_valid():
+	     user = user_form.save()
+	     user.set_password(user.password)
+             user.save()
+	     registered = True
+           
+        else:
+             user_form = UserForm()
+
+        return render_to_response(
+            'restaurant/register.html',
+            {'user_form': user_form, 'registered': registered},
+            context)
+
+
+
+
+
+#    if request.method=='POST':
+#       form = UserCreateForm(request.POST)
+#       if form.is_valid():
+#           form.save()
+#           return HttpResponseRedirect('/accounts/register_success')
+
+#    else:  
+#        form = UserCreateForm()
+
+#    args={}
+#    args.update(csrf(request))
+
+#    args['forms'] = form
+#    print args
+    #return render_to_response('restaurant/register.html',args)
+
+
+def register_success(request):
+    return render_to_response('restaurant/register_success.html')
+
+
+def login(request):
+    c={}
+    c.update(csrf(request))
+    return render_to_response('restaurant/login.html',c )
+
+def auth_view(request):
+    username = request.POST.get('username','')
+    password = request.POST.get('password','')
+    user = auth.authenticate(username=username, password=password)
+
+    if user is not None:
+        auth.login(request,user)
+	return HttpResponseRedirect('/accounts/loggedin')
+    else:
+        return HttpResponseRedirect('/accounts/invalid')
+
+def loggedin(request):
+    return render_to_response('restaurant/loggedin.html',
+			     {'full_name':request.user.username})
+def invalid_login(request):
+    return render_to_response('restaurant/invalid_login.html')
+
+def logout(request):
+    auth.logout(request)
+    return render_to_response('restaurant/logout.html')
+
+
+
+
+
+
+
+
+
+
+
+def index(request,question_id):
+    output=Cuisine.objects.all()
+    #y=Menu.objects.all()
+    t=loader.get_template('restaurant/index.html')
+    #dict={"one":"first","two":"second","three":"third","path":'{% static "restaurant/1.jpg" %}'}
+    #s="ASCII"
+    con=Context()
+    c=RequestContext(request, {
+        'latest_question_list': output
+    })
+    #o=', '.join([p.cuisine_name for p in output])
+    return HttpResponse(t.render(c))
+
+def index1(request):
     output=Cuisine.objects.all()
     #y=Menu.objects.all()
     t=loader.get_template('restaurant/index.html')
@@ -43,7 +143,7 @@ def index(request):
 #    })
 #    #o=', '.join([p.cuisine_name for p in output])
 #    return HttpResponse(t.render(c))
-
+'''
 def chinese(request):
     output=Menu.objects.all().filter(cuisine_name_id="Chinese")
     
@@ -99,17 +199,22 @@ def desserts(request):
     t=loader.get_template('restaurant/Desserts.html')
     dict={"one":"first","two":"second","three":"third","path":'{% static "restaurant/1.jpg" %}'}
     #s="ASCII"
-    con=Context()
-    c=RequestContext(request, {
-        'latest_question_list': output
-    })
-    #o=', '.join([p.cuisine_name for p in output])
-    return HttpResponse(t.render(c))
+#    con=Context()
+ #   c=RequestContext(request, {
+#        'latest_question_list': output
+#    })
+#    #o=', '.join([p.cuisine_name for p in output])
+#    return HttpResponse(t.render(c))
 
+'''
 
-
-def italian(request):
-    output=Menu.objects.all().filter(cuisine_name_id="Italian")
+def italian(request,question_id):
+    
+    cuis=Cuisine.objects.all().filter(cuisine_id=question_id)
+    for j in cuis:
+        z=j.cuisine_name
+        h=j.cuisine_id
+    output=Menu.objects.all().filter(cuisine_id=h)
     #for j in output:
    #    j.menu_item=j.menu_item.replace(" ","_")
     t=loader.get_template('restaurant/Italian.html')
@@ -136,7 +241,7 @@ def italian(request):
                      ms=' already added in the cart'
 
     c=RequestContext(request, {
-        'latest_question_list': output,'msg':ms
+        'latest_question_list': output,'msg':ms,'cuisine':z,'id':question_id
     })
     return HttpResponse(t.render(c))
 
@@ -278,7 +383,7 @@ def welcome(request):
 #return render_to_response("welcome.html", c)
 
 
-def cart(request):
+def cart(request,question_id):
     
     t=loader.get_template('restaurant/cart.html')
     #dict={"one":"first","two":"second","three":"third","path":'{% static "restaurant/1.jpg" %}'}
@@ -316,6 +421,51 @@ def cart(request):
     #o=', '.join([p.cuisine_name for p in output])
     return HttpResponse(t.render(c))
 
+
+def cart1(request):
+    
+    t=loader.get_template('restaurant/cart.html')
+    #dict={"one":"first","two":"second","three":"third","path":'{% static "restaurant/1.jpg" %}'}
+    #s="ASCII"
+    a=request.POST.get('delete')
+    b=request.POST.get('add')
+    c=request.POST.get('dec')
+    if a is not None:
+         a=a.replace('_',' ') 
+         Cart.objects.all().filter(item_name=a).delete()
+    if b is not None:
+         b=b.replace('_',' ') 
+         q=Cart.objects.all().filter(item_name=b)
+         for te in q:
+          te.quantity+=1
+          te.save()
+    if c is not None:
+         c=c.replace('_',' ') 
+         w=Cart.objects.all().filter(item_name=c)
+         for de in w:
+          if (de.quantity)!=1:
+           de.quantity-=1
+           de.save()
+          else:
+           Cart.objects.all().filter(item_name=c).delete()
+    total=0
+    output=Cart.objects.all()
+    for i in output:
+       total=total+((i.price)*(i.quantity))
+    c=RequestContext(request, {
+        'latest_question_list': output,'Total':total
+    })
+     
+	
+    #o=', '.join([p.cuisine_name for p in output])
+    return HttpResponse(t.render(c))
+
+
+
+
+
+
+'''
 def main(request):
      i = get_object_or_404(Image, pk=1)
      return render_to_response('polls/main.html', {'image': i}, context_instance=RequestContext(request))
@@ -343,5 +493,5 @@ def post_form_upload(request):
         'form': form,
     })
 
-
+'''
 
