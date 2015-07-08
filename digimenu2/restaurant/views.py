@@ -35,7 +35,7 @@ def register_user(request):
 	     user.set_password(user.password)
              user.save()
 	     registered = True
-           
+             
         else:
              user_form = UserForm()
 
@@ -81,6 +81,7 @@ def auth_view(request):
 
     if user is not None:
         auth.login(request,user)
+        d=Cart()
 	return HttpResponseRedirect('/accounts/loggedin')
     else:
         return HttpResponseRedirect('/accounts/invalid')
@@ -208,6 +209,21 @@ def desserts(request):
 
 '''
 
+
+
+
+
+
+    
+
+
+
+
+
+
+
+
+
 def italian(request,question_id):
     
     cuis=Cuisine.objects.all().filter(cuisine_id=question_id)
@@ -223,12 +239,16 @@ def italian(request,question_id):
     ms=" added in the cart"
     if a is not None:
          a=a.replace('_',' ') 
+         username = None
+         if request.user.is_authenticated():
+            username = request.user
+
          q=Menu.objects.filter(menu_item=a)
          for i in q:
            p=i.price
          m=Cart.objects.all().filter(item_name=a)
          if len(m)==0:
-              x=Cart(item_name=a,price=p)
+              x=Cart(item_name=a,price=p,user=username)
 	      x.quantity+=1
               x.save()
          else:
@@ -410,7 +430,10 @@ def cart(request,question_id):
           else:
            Cart.objects.all().filter(item_name=c).delete()
     total=0
-    output=Cart.objects.all()
+    username = None
+    if request.user.is_authenticated():
+            username = request.user
+    output=Cart.objects.all().filter(user=username)
     for i in output:
        total=total+((i.price)*(i.quantity))
     c=RequestContext(request, {
@@ -449,7 +472,10 @@ def cart1(request):
           else:
            Cart.objects.all().filter(item_name=c).delete()
     total=0
-    output=Cart.objects.all()
+    username = None
+    if request.user.is_authenticated():
+            username = request.user
+    output=Cart.objects.all().filter(user=username)
     for i in output:
        total=total+((i.price)*(i.quantity))
     c=RequestContext(request, {

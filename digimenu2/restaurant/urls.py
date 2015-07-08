@@ -27,7 +27,7 @@ urlpatterns=[
     url(r'^welcome.*$','restaurant.views.welcome'),
     url(r'^cart.*$','restaurant.views.cart'),
     url(r'^restaurant/welcome/index.*$','restaurant.views.index'),
-    url(r'^restaurant/index/welcome.*$','restaurant.views.welcome'),
+    url(r'^index/welcome.*$','restaurant.views.welcome'),
     url(r'^index/index.*$','restaurant.views.index1'),
     url(r'^index/cart.*$','restaurant.views.cart1'),
    # url(r'^index/(?P<question_id>[0-9]+.*)$','restaurant.views.italian'),

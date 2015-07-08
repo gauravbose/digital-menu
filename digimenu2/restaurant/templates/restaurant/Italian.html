@@ -5976,8 +5976,9 @@ button.close {
   left: 0;
   z-index: 1060;
   display: none;
-  max-width: 500px;
+  max-width: none;
   padding: 1px;
+  width: 500px;
   font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
   font-size: 14px;
   font-weight: normal;
@@ -6848,15 +6849,15 @@ footer {
                                 </h4>
                              <button class="btn btn-link btn-md">View Description</button>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
     
-  {% with p=question.description %}     
-
+  
 <script>
+ 
 $(document).ready(function(){
-    $('.btn-link').popover({title: "Description", content:"{{ p }}", trigger: "focus"}); 
+    $('.btn-link').popover({title: "Description", content:"{{ question.description }}", trigger: "hover"}); 
      
 });
 </script><br>
-{% endwith %}
+
 
                                <!-- <p>{{ question.description }}</p> -->
 <!--<button class="btn btn-link btn-md"> </button>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;-->

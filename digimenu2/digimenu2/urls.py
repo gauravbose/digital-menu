@@ -27,7 +27,7 @@ urlpatterns = patterns('',
     url(r'^accounts/register/$', 'restaurant.views.register_user'),
     url(r'^rango/register/$', 'restaurant.views.register_user'),
     url(r'^accounts/register_success/$', 'restaurant.views.register_success'),
-    
+   # url(r'^restaurant/index/welcome.*$','restaurant.views.welcome'),    
 
     url(r'^restaurant/', include('restaurant.urls')),
   #  url(r'^restaurant/index.?$','restaurant.views.index'),

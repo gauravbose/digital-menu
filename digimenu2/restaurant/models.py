@@ -45,10 +45,10 @@ class Menu(models.Model):
    #     return "Table Number " + str(self.table_no)
         
 
-class Userprofile(models.Model):
-   user = models.ForeignKey(User, unique=True)
-   def __str__(self):
-        return self.user
+#class Userprofile(models.Model):
+#   user = models.OneToOneField(User)
+#   def __str__(self):
+#        return str(self.user)
     #name = models.CharField(max_length = 30)
     #phone_no = models.IntegerField()
    # table_no = models.ForeignKey(Table)
@@ -60,14 +60,21 @@ class Cart(models.Model):
     item_name = models.CharField(max_length = 200)
     quantity = models.IntegerField(default=0)
     price = models.IntegerField()
-    user = models.ForeignKey(Userprofile)
+    user = models.ForeignKey(User)
     def __str__(self):
-        return self.item_name
+       return str(self.user)
+     
+    
 
 
     
-class Cartitem(models.Model):
-
-    item_name = models.ForeignKey(Cart)
-    menu_item = models.ForeignKey(Menu)
+#class Cartitem(models.Model):
+ #item_name = models.ForeignKey(Cart)
+   # menu_item = models.ForeignKey(Menu)
     
+   #item_name = models.CharField(max_length = 200)
+   #quantity = models.IntegerField(default=0)
+   #price = models.IntegerField()
+    #user = models.ForeignKey(User)
+    #def __str__(self):
+       # return str(self.user)

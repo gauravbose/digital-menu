@@ -3119,8 +3119,10 @@ fieldset[disabled] .btn-default.active {
 }
 .btn-primary {
   color: #fff;
-  background-color: #337ab7;
+  background-color:#337ab7; 
   border-color: #2e6da4;
+  width:100px;
+  height:32px;
 }
 .btn-primary:hover,
 .btn-primary:focus,
@@ -3166,6 +3168,8 @@ fieldset[disabled] .btn-primary.active {
   color: #fff;
   background-color: #5cb85c;
   border-color: #4cae4c;
+  width:100px;
+  height:32px;
 }
 .btn-success:hover,
 .btn-success:focus,
@@ -3211,6 +3215,8 @@ fieldset[disabled] .btn-success.active {
   color: #fff;
   background-color: #5bc0de;
   border-color: #46b8da;
+  width:100px;
+  height:32px;
 }
 .btn-info:hover,
 .btn-info:focus,
@@ -3301,6 +3307,8 @@ fieldset[disabled] .btn-warning.active {
   color: #fff;
   background-color: #d9534f;
   border-color: #d43f3a;
+  width:100px;
+  height:64px;
 }
 .btn-danger:hover,
 .btn-danger:focus,
@@ -6830,9 +6838,9 @@ a:hover {
 .popbtn{
 	background-color: #e6edf3;
 	margin-left: 25px;
-	height: 63px;
+	height: 64px;
 	width: 100px;
-	padding: 32px 0 0 14px !important;
+	padding: 0px 0 0 0px !important;
 	float: right;
 	cursor: pointer;
 }
@@ -6852,6 +6860,13 @@ a:hover {
 	float: right;
 }
 
+.rate{
+	color: #f06953;
+	font-size :18px;
+	font-weight: bold;
+	float: right;
+        padding: 20px 40px 0 20px
+}
 
 /* Totals */
 
@@ -6865,10 +6880,12 @@ a:hover {
 
 .totals .price{
 	float: left;
+        color:green;
 }
 
 .totals .itemName{
 	margin-top: 1px;
+        color:black; 
 }
 
 .totals .order{
@@ -7073,9 +7090,9 @@ a:hover {
 		
 		<div class="container-fluid breadcrumbBox text-center">
 			<ol class="breadcrumb">
-				<li><a href="#">Review</a></li>
-				<li class="active"><a href="#">Order</a></li>
-				<li><a href="#">Payment</a></li>
+				<li class="active"><a href="/restaurant/logout">Logout</a></li>
+				
+				<li class="active"><a href="index" >Back to Menu</a></li>
 			</ol>
 		</div>
 		
@@ -7089,29 +7106,36 @@ a:hover {
 				</p>
 			</div>-->
 
-
-			<div class="row">
+		<!--	<div class="row">
 
 				<div class="col-sm-4" ></div>
 				<div class="col-sm-4" ></div>
-				<a class="col-md-4 col-sm-4 text-right btn btn-primary btn-lg active pull-center-right" href="index" role="button">Back to Menu</a>
+				<a class="col-md-4 col-sm-4 text-right btn btn-primary btn-lg active pull-center-right" href="index.html" role="button">Back to Menu</a>
 		
 			</div>
-			
+			-->
 			<div class="col-md-7 col-sm-12 text-left">
 				<ul>
 					<li class="row list-inline columnCaptions">
 						<span>Quantity</span>
+				
+	 			           
 						<span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Item</span>
-						<span>Price&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+						<span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Rate</span>
+
+<span>Subtotal&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
 					</li>
 
 {% if latest_question_list %}
@@ -7121,23 +7145,26 @@ a:hover {
 
 					<li class="row">
 						<span class="quantity">{{ question.quantity}}</span>
-						<span class="itemName">&nbsp; &nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{{ question.item_name}}</span>
+ 						
+
+
+<span class="itemName">&nbsp; &nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{{ question.item_name}}</span>
 						<!--<span class="popbtn"><a class="arrow"></a></span>--> 
 	<span class="popbtn">{% with n=question.item_name.split|join:"_" %}
-	    <form action="cart" method="post">{% csrf_token %}	
-		<button name="delete" onclick="alert('{{question.item_name}}'+' is deleted from the cart!!!')" value={{ n }}>Delete</button>
+	    <form action="cart.html" method="post">{% csrf_token %}	
+		<button name="delete" class="btn-danger active" onclick="alert('{{question.item_name}}'+' is deleted from the cart!!!')" value={{ n }}><!--<strong>--><font face="monospace" size="15">x</font><!--</strong>--></button>
             </form>              
 			     {% endwith %}</span>
-        <span class="popbtn">{% with n=question.item_name.split|join:"_" %}
-	    <form action="cart" method="post">{% csrf_token %}	
-		<button name="add" value={{ n }}>Add Qty</button>
+<span class="popbtn">{% with n=question.item_name.split|join:"_" %}
+	    <form action="cart.html" method="post">{% csrf_token %}	
+		<button name="add" class=btn-success value={{ n }}><strong>+</strong></button>
+            </form>             
+			     
+	    <form action="cart.html" method="post">{% csrf_token %}	
+		<button name="dec" class=btn-primary active value={{ n }}><strong>-</strong></button>
             </form>              
-			     {% endwith %}</span>				
-	 <span class="popbtn">{% with n=question.item_name.split|join:"_" %}
-	    <form action="cart" method="post">{% csrf_token %}	
-		<button name="dec"  value={{ n }}>Dec Qty</button>
-            </form>              
-			     {% endwith %}</span>				
+			     {% endwith %}</span>
+       	<span class="popbtn"><div class="rate">₹{% widthratio question.price 1 question.quantity %}</div></span>
 	
        
 						<span class="price">₹{{ question.price }} &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
@@ -7148,6 +7175,8 @@ a:hover {
 	<button name="delete" onclick="alert('{{question.item_name}}'+' is deleted from the cart!!!')" value={{ n }}>delete</button>
   {% endwith %}-->
 					
+
+
 </li>
 
                                          
@@ -7189,9 +7218,19 @@ a:hover {
 						<span class="popbtn"  data-parent="#asd" data-toggle="collapse" data-target="#demo"><a class="arrow"></a></span>
 						<span class="price">$450.00</span>				
 					</li> -->
+
 					<li class="row totals">
+                                                <div class="col-sm-4"></div>
+                                                <div class="col-sm-4"></div>
 						<span class="itemName">Total:</span>
 						<span class="price">₹{{Total}}</span>
+                                        <form action="welcome" method="get"><select name="tableno">
+  <option value="1">1</option>
+  <option value="2">2</option>
+  <option value="3">3</option>
+  <option value="4">4</option>
+</select>
+<input type="submit" value="SUBMIT"></form>
 						<span class="order"> <a href='welcome.html' class="text-center">ORDER</a></span>
 					</li> 
 				</ul>
