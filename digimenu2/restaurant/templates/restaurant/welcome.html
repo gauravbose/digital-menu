@@ -32,8 +32,7 @@ else if(isNaN(x)||(x.length!=10))
 {% if latest_question_list %}
        
     {% for question in latest_question_list %}
-{{ question.menu_item.split|join:"_" }}<br>
-{{ question.menu_item}}<br>
+{{ question.orderid }}<br>
 {% endfor %}
   {% else %}
     <p>No polls are available.</p>

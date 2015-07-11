@@ -15,7 +15,7 @@ class Cuisine(models.Model):
 
     def __str__(self):
         return self.cuisine_name
-
+  
 #class Image(models.Model):
 #	cuisine = models.ForeignKey(Cuisine)
 #	image =models.ImageField(upload_to='images',verbose_name='My Photo')
@@ -39,11 +39,43 @@ class Menu(models.Model):
    
 
 
-#class Table(models.Model):
- #   table_no = models.IntegerField(primary_key = True)
+class Usertable(models.Model):
+    table_no = models.IntegerField(primary_key = True)
+    user = models.ForeignKey(User)
+    def __str__(self):
+        return "table#"+str(self.table_no)+"  username:"+str(self.user)
   #  def __str__(self):
    #     return "Table Number " + str(self.table_no)
         
+
+class Kitchen(models.Model):
+    
+    table=models.IntegerField()
+    menu_item = models.CharField(max_length =200)
+    quantity= models.IntegerField()
+    orderid=models.CharField(max_length =200)
+    NOCHANGE = 'Nochange'
+    RECIEVED = 'Received'
+    PREPARING = 'Preparing'
+    PREPARED = 'Prepared'
+    DELIVERED = 'Delivered'
+    UNAVAILABLE='Unavailable'
+    status_choices = (
+        (NOCHANGE, 'no change'),
+        (RECIEVED, 'recieved'),
+        (PREPARING, 'preparing'),
+        (PREPARED, 'prepared'),
+        (DELIVERED, 'delivered'),
+        (UNAVAILABLE, 'unavailable')
+    )
+    status = models.CharField(max_length=20,
+                                      choices=status_choices,
+                                      default='Nochange')
+    def __str__(self):
+        return "table#" +str(self.table) +'  item name:'+self.menu_item
+
+
+
 
 #class Userprofile(models.Model):
 #   user = models.OneToOneField(User)
@@ -64,7 +96,16 @@ class Cart(models.Model):
     def __str__(self):
        return str(self.user)
      
-    
+
+class Bill(models.Model):
+    item_name = models.CharField(max_length = 200)
+    quantity = models.IntegerField(default=0)
+    price = models.IntegerField()
+    user = models.ForeignKey(User)
+    def __str__(self):
+       return str(self.user)
+     
+        
 
 
     

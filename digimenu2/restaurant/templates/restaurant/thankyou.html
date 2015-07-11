@@ -1,7 +1,7 @@
-
 <html>
 <head>
 <style>
+
 @import url(http://fonts.googleapis.com/css?family=Roboto:400,100);
 
 body {
@@ -10,9 +10,8 @@ body {
   -moz-background-size: cover;
   -o-background-size: cover;
   background-size: cover;
+  background-color: #C8D3A7;
   font-family: 'Roboto', sans-serif;
-background-color: #C8D3A7;
-
 }
 
 .login-card {
@@ -109,25 +108,17 @@ background-color: #C8D3A7;
   text-align: center;
   font-size: 12px;
 }
+
 </style>
-
-
-
 </head>
 <body>
 {% load staticfiles %}<img src="{% static "restaurant/cool.jpg"%}" alt="logo">
-<div class="login-card">
-{% block content %}
+    <div class="login-card">
+<h1>Thank You !!</h1>
+			
+				<a href="/restaurant/logout">Logout</a>
+			
 
-  <h2>Hi {{full_name}} you are now logged in!</h2>
-  <p>Click <a href="/restaurant/logout/">here</a> to logout.</p><br>
-  <p>Click <a href="/restaurant/index/">here</a> to go to main menu.</p>
-  
-  <!--<p>Click <a href="/accounts/profile/">here</a> to edit your profile information</p>-->
-
-{% endblock %}
 </body>
 
-
 </html>
-

@@ -1,33 +1,171 @@
 <!DOCTYPE html>
-<html>
-	<head>
-		<title>Your order</title>
-		<meta charset="UTF-8">
-		<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-		<link href='http://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css'>
-		<link rel="stylesheet" type="text/css" href="assets/css/bootstrap.min.css"/>
-		<link rel="stylesheet" type="text/css" href="assets/css/custom.css"/>	
+<html lang="en">
+<head>
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>HELL'S KITCHEN</title>
+
+    <!-- Bootstrap core CSS -->
+    <link href="css/bootstrap1.min.css" rel="stylesheet">
+
+    <!-- Custom styles for this template -->
+    <link href="css/main.css" rel="stylesheet">
+
+    <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+      <script src="js/html5shiv.js"></script>
+      <script src="js/respond.min.js"></script>
+      <![endif]-->
+
 
 <style>
 
+body {
+  padding-top: 40px;
+  background-color: #f5f5f5;
+}
+.flat .plan {
+  border-radius: 6px;
+  list-style: none;
+  padding: 0 0 20px;
+  margin: 0 0 15px;
+  background: #fff;
+  text-align: center;
+}
+.flat .plan li {
+  padding: 10px 15px;
+  color: #ccc;
+  border-top: 1px solid #f5f5f5;
+  -webkit-transition: 300ms;
+  transition: 300ms;
+}
+.flat .plan li.plan-price {
+  border-top: 0;
+}
+.flat .plan li.plan-name {
+  border-radius: 6px 6px 0 0;
+  padding: 15px;
+  font-size: 24px;
+  line-height: 24px;
+  color: #fff;
+  background: #e74c3c;
+  margin-bottom: 30px;
+  border-top: 0;
+}
+.flat .plan li > strong {
+  color: #e74c3c;
+}
+.flat .plan li.plan-action {
+  margin-top: 10px;
+  border-top: 0;
+}
+.flat .plan.featured {
+  -webkit-transform: scale(1.1);
+  -ms-transform: scale(1.1);
+  transform: scale(1.1);
+}
+.flat .plan.featured li.plan-name {
+  background: #000;
+}
+.flat .plan.featured:hover li.plan-name {
+  background: #c0392b;
+}
+.flat .plan:hover li.plan-name {
+  background: #000;
+}
+#footer {
+  margin-top: 100px;
+  padding-bottom: 30px;
+}
 
 
+body {
+  padding-top: 40px;
+  background-color: #f5f5f5;
+}
 
+.transition(@transition) {
+  -webkit-transition: @transition;
+  transition: @transition;
+}
 
+.scale(@ratio) {
+  -webkit-transform: scale(@ratio);
+-ms-transform: scale(@ratio); // IE9+
+transform: scale(@ratio);
+}
 
+.flat{
+  .plan{
+    border-radius: 6px;
+    list-style: none;
+    padding: 0 0 20px;
+    margin: 0 0 15px;
+    background: #fff;
+    text-align: center;
+    li{
+      padding: 10px 15px;
+      color: #ccc;
+      border-top: 1px solid #f5f5f5;
+      .transition(300ms);
+      &.plan-price{
+        border-top: 0;
+      }
+      &.plan-name{
+        border-radius: 6px 6px 0 0;
+        padding: 15px;
+        font-size: 24px;
+        line-height: 24px;
+        color: #fff;
+        background: #e74c3c;
+        margin-bottom: 30px;
+        border-top: 0;
+      }
 
+      >strong{
+        color: #e74c3c;
+      }
 
+      &.plan-action{
+        margin-top: 10px;
+        border-top: 0;
+      }
+    }
 
+    &.featured{
+      .scale(1.1);
+      li{
+        &.plan-name{
+          background: #000;
+        }
+      }
+      &:hover{
+        li{
+          &.plan-name{
+            background: #c0392b;
+          }
+        }
+      }
+    }
 
+    &:hover{
+      li{
+        &.plan-name{
+          background: #000;
+        }
+      }
+    }
+  }
+}
 
-
-
-
-
-
-
-
-
+#footer {
+  margin-top: 100px;
+  padding-bottom: 30px;
+}
 
 
 /*!
@@ -3119,10 +3257,8 @@ fieldset[disabled] .btn-default.active {
 }
 .btn-primary {
   color: #fff;
-  background-color:#337ab7; 
+  background-color: #337ab7;
   border-color: #2e6da4;
-  width:100px;
-  height:32px;
 }
 .btn-primary:hover,
 .btn-primary:focus,
@@ -3168,8 +3304,6 @@ fieldset[disabled] .btn-primary.active {
   color: #fff;
   background-color: #5cb85c;
   border-color: #4cae4c;
-  width:100px;
-  height:32px;
 }
 .btn-success:hover,
 .btn-success:focus,
@@ -3215,8 +3349,6 @@ fieldset[disabled] .btn-success.active {
   color: #fff;
   background-color: #5bc0de;
   border-color: #46b8da;
-  width:100px;
-  height:32px;
 }
 .btn-info:hover,
 .btn-info:focus,
@@ -3307,8 +3439,6 @@ fieldset[disabled] .btn-warning.active {
   color: #fff;
   background-color: #d9534f;
   border-color: #d43f3a;
-  width:100px;
-  height:64px;
 }
 .btn-danger:hover,
 .btn-danger:focus,
@@ -6623,637 +6753,269 @@ button.close {
 }
 /*# sourceMappingURL=bootstrap.css.map */
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-/*-----------------------------------
-	General Styles
------------------------------------*/
-
-body{
-	font-size : 14px;
-	background-color: #f2f6f9;
-}
-
-ul{
-	list-style-type: none;
-}
-
-a:hover {
-	text-decoration:none;
-}
-
-
-/*-----------------------------------
-	Navbar 
------------------------------------*/
-
-.minicart{
-	background:url(../images/sprite.png);
-	background-position: -156px 11px;
-	background-repeat:no-repeat;
-	width: 40px;
-	height: 50px;
-	padding-right: 32px;
-}
-
-.navbar{
-	background-color: #4ea6bc;
-	padding: 15px ;
-	border-radius: 0;
-	margin: 0;
-}
-
-.navbar-brand{
-	color: #fff;
-	font-family: Open Sans, sans-serif;
-	padding-left: 32px;
-}
-
-.navbar-brand:hover{
-	color: #fff;
-}
-
-/*-----------------------------------
-	Breadcrumb 
------------------------------------*/
-
-.breadcrumb > .active a{
-	color: #468595;
-	font-weight: bold;
-	text-transform: uppercase;
-}
-
-.breadcrumb li a{
-	color :#b3d4dc;
-	font-weight: bold;
-	text-transform: uppercase;
-}
-
-.breadcrumb>li+li:before {
-	content: "\00BB";
-}
-
-.breadcrumb{
-	margin-bottom: 100px;
-	background-color: #ffffff;
-}
-
-.breadcrumbBox{
-	background-color: #ffffff;
-	height: 100px;
-	margin-bottom: 100px;
-	padding-top: 32px;
-}
-
-/*----------------------------------- 
-	Main
------------------------------------*/
-
-.container.text-center{
-	padding: 0 32px;
-}
-
-/*-----------------------------------  
-	Logo and description 
------------------------------------ */
-
-
-.col-md-5.col-sm-12{
-	padding: 0;
-}
-
-.col-md-5.col-sm-12 h1{
-	color: #595c5f;
-	font-size: 24px;
-	font-weight: bold;
-	margin-bottom:30px;
-	text-align: left;
-}
-
-.col-md-5.col-sm-12 p{
-	color: #898e92;
-	line-height: 1.5;
-	max-width: 400px;
-	text-align: justify;
-}
-
-.bigcart{
-	background:url(../images/sprite.png);
-	background-position: 0px 11px;
-	background-repeat:no-repeat;
-	width: 155px;
-	height: 120px;
-	margin:0 0 40px 60px;
-}
-
-
-/*-----------------------------------  
-	Cart items list
------------------------------------*/
-
-.col-md-7.col-sm-12{
-	padding-left: 50px ;
-	margin-bottom: 72px;
-}
-
-.row{
-	box-shadow: 0 1px 0 #e1e5e8;
-	padding-bottom :0;
-	padding-left: 15px;
-	background-color: #ffffff;
-	margin-bottom: 11px;
-        width:1000px;
-}
-
-.row span{
-	padding: 20px 0 6px 0;
-}
-
-/* Column Captions */
-
-.columnCaptions{
-	color: #7e93a7;
-	font-size:12px;
-	text-transform: uppercase;
-	padding: 0;
-	box-shadow: 0 0 0;
-	background-color: #f2f6f9;
-}
-
-.columnCaptions span:first-child{
-	padding-left:8px;
-}
-
-.columnCaptions span{
-	padding: 0 21px 0 0;
-}
-
-.columnCaptions span:last-child{
-	float: right;
-	padding-right: 72px;
-}
-
-
-/* Items */
-
-.itemName{	
-	color: #727578;
-	font-size :16px;
-	font-weight: bold;
-	float: left;
-	padding-left:25px;
-}
-
-
-.quantity{	
-	color: #4ea6bc;
-	font-size :18px;
-	font-weight: bold;
-	float : left;
-	width: 42px;
-	padding-left: 7px;
-}
-
-
-.popbtn{
-	background-color: #e6edf3;
-	margin-left: 25px;
-	height: 64px;
-	width: 100px;
-	padding: 0px 0 0 0px !important;
-	float: right;
-	cursor: pointer;
-}
-
-.arrow{
-	width: 0; 
-	height: 0; 
-	border-left: 6px solid transparent;
-	border-right: 6px solid transparent;
-	border-top: 6px solid #858e97;
-}
-
-.price{
-	color: #f06953;
-	font-size :18px;
-	font-weight: bold;
-	float: right;
-}
-
-.rate{
-	color: #f06953;
-	font-size :18px;
-	font-weight: bold;
-	float: right;
-        padding: 20px 40px 0 20px
-}
-
-/* Totals */
-
-.totals{
-	background-color: #f2f6f9;
-}
-
-.totals span{
-	padding: 40px 15px 40px 0;
-}
-
-.totals .price{
-	float: left;
-        color:green;
-}
-
-.totals .itemName{
-	margin-top: 1px;
-        color:black; 
-}
-
-.totals .order{
-	float: right;
-	padding: 0;
-	margin-top: 40px; 
-	padding-left: 5px;
-	cursor: pointer;
-}
-
-.order a{
-	background-color: #f08573;
-	color: #fbfffa;
-	font-weight: bold;
-	border-radius: 2px;
-	padding: 20px 30px;
-}
-
-
-/* Popovers */
-
-.popover{
-	border-radius: 3px;
-	box-shadow: 0 0 1px 1px rgba(0,0,0,0.2);
-	border: 0;
-	background-color: #ffffff;
-}
-
-.popover.bottom{
-	margin-top: -9px;
-}
-
-.glyphicon{
-	width: 24px;
-	font-size: 24px;
-	padding: 0;
-}
-
-.glyphicon-pencil{
-	color: #858e97;
-	margin: 7px 12px 7px 10px;
-}
-
-.glyphicon-remove{
-	color: #f06953;
-	margin-right: 10px;
-}
-
-/*-----------------------------------  
-	Media Queries 
------------------------------------ */
-
-/* Tablet size */
-
-@media (max-width: 992px) {
-
-	.container.text-center{
-		padding: 0 15px;
-	}
-
-	.breadcrumb{
-		margin-bottom: 32px;
-	}
-
-	.bigcart{
-		margin: 0 auto 40px auto;
-	}
-
-	.col-md-5.col-sm-12 h1{
-		text-align: center;
-	}
-
-	.col-md-5.col-sm-12 p{
-		margin: 0 auto 64px auto;
-		text-align: justify;
-	}
-
-	.col-md-7.col-sm-12{
-		padding-left: 10px ;
-		padding-right: 50px;
-	}
-
-	.totals{
-		box-shadow: 0 0 0;
-	}
-
-}
-
-
-/* Mobile device size */
-
-@media (max-width: 768px) {
-
-	.navbar{ 
-		padding:10px 0;
-	}
-	
-	.minicart{
-		margin-right: -1px;
-		padding-right: 0;
-	}
-
-	.navbar-brand{
-		padding-left: 0;
-	}
-
-	.breadcrumbBox{
-		height:80px;
-		padding-top:21px;
-	}
-
-	.col-md-5.col-sm-12 p{
-		max-width: 300px;
-	}
-
-	.col-md-7.col-sm-12{
-		padding-left: 0;
-		padding-right: 15px;
-		margin-bottom: 32px;
-	}
-
-	.col-md-7.col-sm-12 ul{
-		padding-left: 15px ;
-	}
-
-	.columnCaptions span{
-		padding: 0 21px 0 0;
-	}
-
-	.columnCaptions span:last-child{
-		float: right;
-		padding-right: 42px;
-	}
-
-	.row{
-		padding-bottom:10px;
-	}
-
-	.quantity{	
-		width: 23px;
-		padding-right: 40px !important;
-	}
-
-	.popbtn{
-		background-color: white;
-		position: absolute;
-		height:40px;
-		right: 0;
-	}
-
-	.price{	
-		position: absolute;
-		right: 42px;
-	}
-
-	.totals{
-		padding: 0;
-	}
-
-	.totals .price{
-		position: static;
-	}
-
-	/* Change Bootstrap's default popover to make it look nice on a mobile device */
-
-	.popover.bottom>.arrow{
-		left: auto;
-		margin-left: 0;
-		right: 5px;
-	}
-
-	.popover.bottom{
-		margin-top: 7px;
-		margin-left: -40px;
-	}
-
-}
-
-
-
-
-
-
-
-
-
-
 </style>
-	
-	</head>
+  </head>
 
-	<body>
-		
-		<nav class="navbar">
-			<div class="container">
-				<a class="navbar-brand" href="#">Your Order</a>
-				<div class="navbar-right">
-					<div class="container minicart"><!--{% load staticfiles %}<img src="{% static "restaurant/cart.jpg"%}">--></div>
-				</div>
-			</div>
-		</nav>
-		
-		<div class="container-fluid breadcrumbBox text-center">
-			<ol class="breadcrumb">
-				<li class="active"><a href="/restaurant/logout">Logout</a></li>
-				
-				<li class="active"><a href="index" >Back to Menu</a></li>
-                                <li class="active"><a href="status" >View Order Status</a></li>
-			</ol>
-		</div>
-		
-		<div class="container text-center"> 
+  <body>
 
-			<!--<div class="col-md-5 col-sm-12">
-				<div class="bigcart"></div>
-				<h1>Your shopping cart</h1>
-				<p>
-					This is a free and <b><a href="http://tutorialzine.com/2014/04/responsive-shopping-cart-layout-twitter-bootstrap-3/" title="Read the article!">responsive shopping cart layout, made by Tutorialzine</a></b>. It looks nice on both desktop and mobile browsers. Try it by resizing your window (or opening it on your smartphone and pc).
-				</p>
-			</div>-->
+    <div class="container">
 
-		<!--	<div class="row">
+        <h1 class="page-header">HELL'S KITCHEN</h1>
 
-				<div class="col-sm-4" ></div>
-				<div class="col-sm-4" ></div>
-				<a class="col-md-4 col-sm-4 text-right btn btn-primary btn-lg active pull-center-right" href="index.html" role="button">Back to Menu</a>
-		
-			</div>
-			-->
-			<div class="col-md-7 col-sm-12 text-left">
-				<ul>
-					<li class="row list-inline columnCaptions">
-						<span>Quantity</span>
-				
-	 			           
-						<span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Item</span>
-						<span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Rate</span>
-
-<span>Subtotal&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
-					</li>
+        <p>&nbsp;</p>
 
 {% if latest_question_list %}
     
     {% for question in latest_question_list %}
 
 
-					<li class="row">
-						<span class="quantity">{{ question.quantity}}</span>
- 						
-
-
-<span class="itemName">&nbsp; &nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{{ question.item_name}}</span>
-						<!--<span class="popbtn"><a class="arrow"></a></span>--> 
-	<span class="popbtn">{% with n=question.item_name.split|join:"_" %}
-	    <form action="cart.html" method="post">{% csrf_token %}	
-		<button name="delete" class="btn-danger active" onclick="alert('{{question.item_name}}'+' is deleted from the cart!!!')" value={{ n }}><!--<strong>--><font face="monospace" size="15">x</font><!--</strong>--></button>
-            </form>              
-			     {% endwith %}</span>
-<span class="popbtn">{% with n=question.item_name.split|join:"_" %}
-	    <form action="cart.html" method="post">{% csrf_token %}	
-		<button name="add" class=btn-success value={{ n }}><strong>+</strong></button>
-            </form>             
-			     
-	    <form action="cart.html" method="post">{% csrf_token %}	
-		<button name="dec" class=btn-primary active value={{ n }}><strong>-</strong></button>
-            </form>              
-			     {% endwith %}</span>
-       	<span class="popbtn"><div class="rate">₹{% widthratio question.price 1 question.quantity %}</div></span>
-	
-       
-						<span class="price">₹{{ question.price }} &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
-</span>
-			  
-
- <!--{% with n=question.item_name.split|join:"_" %}
-	<button name="delete" onclick="alert('{{question.item_name}}'+' is deleted from the cart!!!')" value={{ n }}>delete</button>
-  {% endwith %}-->
-					
-
-
-</li>
-
-                                         
- 
-
-
+        <div class="row flat">
+            <div class="col-lg-3 col-md-3 col-xs-6">
+                <ul class="plan plan2 featured">
+                    <li class="plan-name">
+                        TABLE #1
+                    </li>
+                    <li class="plan-price">
+                        <strong>{{ question.item_name}}</strong> {{ question.quantity}}
+                    </li>
+                    <!--<li>
+                        <strong>5GB</strong> Storage
+                    </li>
+                    <li>
+                        <strong>1GB</strong> RAM
+                    </li>
+                    <li>
+                        <strong>400GB</strong> Bandwidth
+                    </li>
+                    <li>
+                        <strong>10</strong> Email Address
+                    </li>
+                    <li>
+                        <strong>Forum</strong> Support
+                    </li>-->
+                    <li class="plan-action">
+                        <a href="#" class="btn btn-danger btn-lg">Ready to serve</a>
+                    </li>
+                </ul>
+            </div>
 {% endfor %}
 {% else %}
     <h2>No items in cart.</h2>
 {% endif %}
+            <div class="col-lg-3 col-md-3 col-xs-6">
+                <ul class="plan plan2 featured">
+                    <li class="plan-name">
+                        TABLE #2
+                    </li>
+                    <li class="plan-price">
+                        <strong>$39</strong> / month
+                    </li>
+                    <li>
+                        <strong>5GB</strong> Storage
+                    </li>
+                    <li>
+                        <strong>1GB</strong> RAM
+                    </li>
+                    <li>
+                        <strong>400GB</strong> Bandwidth
+                    </li>
+                    <li>
+                        <strong>10</strong> Email Address
+                    </li>
+                    <li>
+                        <strong>Forum</strong> Support
+                    </li>
+                    <li class="plan-action">
+                     <a href="#" class="btn btn-danger btn-lg">Ready to serve</a>
+                 </li>
+             </ul>
+         </div>
+         
+         <div class="col-lg-3 col-md-3 col-xs-6">
+                <ul class="plan plan2 featured">
+                    <li class="plan-name">
+                        TABLE #3
+                    </li>
+                    <li class="plan-price">
+                        <strong>$39</strong> / month
+                    </li>
+                    <li>
+                        <strong>5GB</strong> Storage
+                    </li>
+                    <li>
+                        <strong>1GB</strong> RAM
+                    </li>
+                    <li>
+                        <strong>400GB</strong> Bandwidth
+                    </li>
+                    <li>
+                        <strong>10</strong> Email Address
+                    </li>
+                    <li>
+                        <strong>Forum</strong> Support
+                    </li>
+                    <li class="plan-action">
+                     <a href="#" class="btn btn-danger btn-lg">Ready to serve</a>
+                 </li>
+             </ul>
+         </div>
+         
+
+         <div class="col-lg-3 col-md-3 col-xs-6">
+                <ul class="plan plan2 featured">
+                    <li class="plan-name">
+                        TABLE #4
+                    </li>
+                    <li class="plan-price">
+                        <strong>$39</strong> / month
+                    </li>
+                    <li>
+                        <strong>5GB</strong> Storage
+                    </li>
+                    <li>
+                        <strong>1GB</strong> RAM
+                    </li>
+                    <li>
+                        <strong>400GB</strong> Bandwidth
+                    </li>
+                    <li>
+                        <strong>10</strong> Email Address
+                    </li>
+                    <li>
+                        <strong>Forum</strong> Support
+                    </li>
+                    <li class="plan-action">
+                     <a href="#" class="btn btn-danger btn-lg">Ready to serve</a>
+                 </li>
+             </ul>
+         </div>
+
+         <div class="col-lg-3 col-md-3 col-xs-6">
+                <ul class="plan plan2 featured">
+                    <li class="plan-name">
+                        TABLE #5
+                    </li>
+                    <li class="plan-price">
+                        <strong>$39</strong> / month
+                    </li>
+                    <li>
+                        <strong>5GB</strong> Storage
+                    </li>
+                    <li>
+                        <strong>1GB</strong> RAM
+                    </li>
+                    <li>
+                        <strong>400GB</strong> Bandwidth
+                    </li>
+                    <li>
+                        <strong>10</strong> Email Address
+                    </li>
+                    <li>
+                        <strong>Forum</strong> Support
+                    </li>
+                    <li class="plan-action">
+                     <a href="#" class="btn btn-danger btn-lg">Ready to serve</a>
+                 </li>
+             </ul>
+         </div>
+
+         <div class="col-lg-3 col-md-3 col-xs-6">
+                <ul class="plan plan2 featured">
+                    <li class="plan-name">
+                        TABLE #6
+                    </li>
+                    <li class="plan-price">
+                        <strong>$39</strong> / month
+                    </li>
+                    <li>
+                        <strong>5GB</strong> Storage
+                    </li>
+                    <li>
+                        <strong>1GB</strong> RAM
+                    </li>
+                    <li>
+                        <strong>400GB</strong> Bandwidth
+                    </li>
+                    <li>
+                        <strong>10</strong> Email Address
+                    </li>
+                    <li>
+                        <strong>Forum</strong> Support
+                    </li>
+                    <li class="plan-action">
+                     <a href="#" class="btn btn-danger btn-lg">Ready to serve</a>
+                 </li>
+             </ul>
+         </div>
 
 
 
 
+         <div class="col-lg-3 col-md-3 col-xs-6">
+            <ul class="plan plan2 featured">
+                <li class="plan-name">
+                    TABLE #7
+                </li>
+                <li class="plan-price">
+                    <strong>$199</strong> / month
+                </li>
+                <li>
+                    <strong>50GB</strong> Storage
+                </li>
+                <li>
+                    <strong>8GB</strong> RAM
+                </li>
+                <li>
+                    <strong>1024GB</strong> Bandwidth
+                </li>
+                <li>
+                    <strong>Unlimited</strong> Email Address
+                </li>
+                <li>
+                    <strong>Forum</strong> Support
+                </li>
+                <li class="plan-action">
+                 <a href="#" class="btn btn-danger btn-lg">Ready to serve</a>
+             </li>
+         </ul>
+     </div>
 
+     <div class="col-lg-3 col-md-3 col-xs-6">
+        <ul class="plan plan2 featured">
+            <li class="plan-name">
+                TABLE #8
+            </li>
+            <li class="plan-price">
+                <strong>$999</strong> / month
+            </li>
+            <li>
+                <strong>50GB</strong> Storage
+            </li>
+            <li>
+                <strong>8GB</strong> RAM
+            </li>
+            <li>
+                <strong>1024GB</strong> Bandwidth
+            </li>
+            <li>
+                <strong>Unlimited</strong> Email Address
+            </li>
+            <li>
+                <strong>Forum</strong> Support
+            </li>
+            <li class="plan-action">
+             <a href="#" class="btn btn-danger btn-lg">Ready to serve</a>
+         </li>
+     </ul>
+ </div>
+</div>
 
+</div> <!-- /container -->
 
-			<!--		<li class="row">
-						<span class="quantity">50</span>
-						<span class="itemName">Party Cups</span>
-						<span class="popbtn"><a class="arrow"></a></span>
-						<span class="price">$5.00</span>
-					</li>
-					<li class="row">
-						<span class="quantity">20</span>
-						<span class="itemName">Beer kegs</span>
-						<span class="popbtn"><a class="arrow"></a></span>
-						<span class="price">$919.99</span>				
-					</li>
-					<li class="row">
-						<span class="quantity">18</span>
-						<span class="itemName">Pound of beef</span>
-						<span class="popbtn"><a class="arrow"></a></span>
-						<span class="price">$269.45</span>
-					</li>
-					<li class="row">
-						<span class="quantity">1</span>
-						<span class="itemName">Bullet-proof vest</span>
-						<span class="popbtn"  data-parent="#asd" data-toggle="collapse" data-target="#demo"><a class="arrow"></a></span>
-						<span class="price">$450.00</span>				
-					</li> -->
-
-					<li class="row totals">
-                                                <div class="col-sm-4"></div>
-                                                <div class="col-sm-4"></div>
-						<span class="itemName">Total:</span>
-						<span class="price">₹{{Total}}</span>
-                                     <form action="status" method="get"><select name="tableno">
-  <option value="" selected default disabled>Please enter table no...</option>
-  <option value="1">1</option>
-  <option value="2">2</option>
-  <option value="3">3</option>
-  <option value="4">4</option>
-</select>
-<button name="kitchen" value="on"><strong>Submit</strong></button>
-<!--<input type="submit" value="SUBMIT">--></form>
-	<!--			<		<span class="order"> <a href='welcome.html' class="text-center">ORDER</a></span>-->
-					</li> 
-				</ul>
-			</div>
-
-		</div> 
-		
-
-		<!-- The popover content -->
-
-		<div id="popover" style="display: none">
-			<a href="#"><span class="glyphicon glyphicon-pencil"></span></a>
-			<a href="#"><span class="glyphicon glyphicon-remove"></span></a>
-		</div>
-		
-		<!-- JavaScript includes -->
-
-		<script src="http://code.jquery.com/jquery-1.11.0.min.js"></script> 
-		<script src="assets/js/bootstrap.min.js"></script>
-		<script src="assets/js/customjs.js"></script>
-
-	</body>
+<div id="footer">
+  <div class="container">
+    <p class="text-muted credit">By <a target="_blank" href="http://shapebootstrap.net">shapebootstrap.net</a></p>
+</div>
+</div>
+</body>
 </html>

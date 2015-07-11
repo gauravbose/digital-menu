@@ -1,34 +1,103 @@
 <!DOCTYPE html>
-<html>
-	<head>
-		<title>Your order</title>
-		<meta charset="UTF-8">
-		<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-		<link href='http://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css'>
-		<link rel="stylesheet" type="text/css" href="assets/css/bootstrap.min.css"/>
-		<link rel="stylesheet" type="text/css" href="assets/css/custom.css"/>	
+<html lang="en">
+<head>
+<meta http-equiv="refresh" content="15" >
+<script>/*! matchMedia() polyfill - Test a CSS media type/query in JS. Authors & copyright (c) 2012: Scott Jehl, Paul Irish, Nicholas Zakas. Dual MIT/BSD license */
+/*! NOTE: If you're already including a window.matchMedia polyfill via Modernizr or otherwise, you don't need this part */
+window.matchMedia=window.matchMedia||function(a){"use strict";var c,d=a.documentElement,e=d.firstElementChild||d.firstChild,f=a.createElement("body"),g=a.createElement("div");return g.id="mq-test-1",g.style.cssText="position:absolute;top:-100em",f.style.background="none",f.appendChild(g),function(a){return g.innerHTML='&shy;<style media="'+a+'"> #mq-test-1 { width: 42px; }</style>',d.insertBefore(f,e),c=42===g.offsetWidth,d.removeChild(f),{matches:c,media:a}}}(document);
+
+/*! Respond.js v1.1.0: min/max-width media query polyfill. (c) Scott Jehl. MIT/GPLv2 Lic. j.mp/respondjs  */
+(function(a){"use strict";function x(){u(!0)}var b={};a.respond=b,b.update=function(){},b.mediaQueriesSupported=a.matchMedia&&a.matchMedia("only all").matches,b.mediaQueriesSupported;var q,r,t,c=a.document,d=c.documentElement,e=[],f=[],g=[],h={},i=30,j=c.getElementsByTagName("head")[0]||d,k=c.getElementsByTagName("base")[0],l=j.getElementsByTagName("link"),m=[],n=function(){for(var b=0;l.length>b;b++){var c=l[b],d=c.href,e=c.media,f=c.rel&&"stylesheet"===c.rel.toLowerCase();d&&f&&!h[d]&&(c.styleSheet&&c.styleSheet.rawCssText?(p(c.styleSheet.rawCssText,d,e),h[d]=!0):(!/^([a-zA-Z:]*\/\/)/.test(d)&&!k||d.replace(RegExp.$1,"").split("/")[0]===a.location.host)&&m.push({href:d,media:e}))}o()},o=function(){if(m.length){var a=m.shift();v(a.href,function(b){p(b,a.href,a.media),h[a.href]=!0,setTimeout(function(){o()},0)})}},p=function(a,b,c){var d=a.match(/@media[^\{]+\{([^\{\}]*\{[^\}\{]*\})+/gi),g=d&&d.length||0;b=b.substring(0,b.lastIndexOf("/"));var h=function(a){return a.replace(/(url\()['"]?([^\/\)'"][^:\)'"]+)['"]?(\))/g,"$1"+b+"$2$3")},i=!g&&c;b.length&&(b+="/"),i&&(g=1);for(var j=0;g>j;j++){var k,l,m,n;i?(k=c,f.push(h(a))):(k=d[j].match(/@media *([^\{]+)\{([\S\s]+?)$/)&&RegExp.$1,f.push(RegExp.$2&&h(RegExp.$2))),m=k.split(","),n=m.length;for(var o=0;n>o;o++)l=m[o],e.push({media:l.split("(")[0].match(/(only\s+)?([a-zA-Z]+)\s?/)&&RegExp.$2||"all",rules:f.length-1,hasquery:l.indexOf("(")>-1,minw:l.match(/\(min\-width:[\s]*([\s]*[0-9\.]+)(px|em)[\s]*\)/)&&parseFloat(RegExp.$1)+(RegExp.$2||""),maxw:l.match(/\(max\-width:[\s]*([\s]*[0-9\.]+)(px|em)[\s]*\)/)&&parseFloat(RegExp.$1)+(RegExp.$2||"")})}u()},s=function(){var a,b=c.createElement("div"),e=c.body,f=!1;return b.style.cssText="position:absolute;font-size:1em;width:1em",e||(e=f=c.createElement("body"),e.style.background="none"),e.appendChild(b),d.insertBefore(e,d.firstChild),a=b.offsetWidth,f?d.removeChild(e):e.removeChild(b),a=t=parseFloat(a)},u=function(a){var b="clientWidth",h=d[b],k="CSS1Compat"===c.compatMode&&h||c.body[b]||h,m={},n=l[l.length-1],o=(new Date).getTime();if(a&&q&&i>o-q)return clearTimeout(r),r=setTimeout(u,i),void 0;q=o;for(var p in e)if(e.hasOwnProperty(p)){var v=e[p],w=v.minw,x=v.maxw,y=null===w,z=null===x,A="em";w&&(w=parseFloat(w)*(w.indexOf(A)>-1?t||s():1)),x&&(x=parseFloat(x)*(x.indexOf(A)>-1?t||s():1)),v.hasquery&&(y&&z||!(y||k>=w)||!(z||x>=k))||(m[v.media]||(m[v.media]=[]),m[v.media].push(f[v.rules]))}for(var B in g)g.hasOwnProperty(B)&&g[B]&&g[B].parentNode===j&&j.removeChild(g[B]);for(var C in m)if(m.hasOwnProperty(C)){var D=c.createElement("style"),E=m[C].join("\n");D.type="text/css",D.media=C,j.insertBefore(D,n.nextSibling),D.styleSheet?D.styleSheet.cssText=E:D.appendChild(c.createTextNode(E)),g.push(D)}},v=function(a,b){var c=w();c&&(c.open("GET",a,!0),c.onreadystatechange=function(){4!==c.readyState||200!==c.status&&304!==c.status||b(c.responseText)},4!==c.readyState&&c.send(null))},w=function(){var b=!1;try{b=new a.XMLHttpRequest}catch(c){b=new a.ActiveXObject("Microsoft.XMLHTTP")}return function(){return b}}();n(),b.update=n,a.addEventListener?a.addEventListener("resize",x,!1):a.attachEvent&&a.attachEvent("onresize",x)})(this);
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/*
+ HTML5 Shiv v3.6.2pre | @afarkas @jdalton @jon_neal @rem | MIT/GPL2 Licensed
+*/
+(function(l,f){function m(){var a=e.elements;return"string"==typeof a?a.split(" "):a}function i(a){var b=n[a[o]];b||(b={},h++,a[o]=h,n[h]=b);return b}function p(a,b,c){b||(b=f);if(g)return b.createElement(a);c||(c=i(b));b=c.cache[a]?c.cache[a].cloneNode():r.test(a)?(c.cache[a]=c.createElem(a)).cloneNode():c.createElem(a);return b.canHaveChildren&&!s.test(a)?c.frag.appendChild(b):b}function t(a,b){if(!b.cache)b.cache={},b.createElem=a.createElement,b.createFrag=a.createDocumentFragment,b.frag=b.createFrag();
+a.createElement=function(c){return!e.shivMethods?b.createElem(c):p(c,a,b)};a.createDocumentFragment=Function("h,f","return function(){var n=f.cloneNode(),c=n.createElement;h.shivMethods&&("+m().join().replace(/\w+/g,function(a){b.createElem(a);b.frag.createElement(a);return'c("'+a+'")'})+");return n}")(e,b.frag)}function q(a){a||(a=f);var b=i(a);if(e.shivCSS&&!j&&!b.hasCSS){var c,d=a;c=d.createElement("p");d=d.getElementsByTagName("head")[0]||d.documentElement;c.innerHTML="x<style>article,aside,figcaption,figure,footer,header,hgroup,nav,section{display:block}mark{background:#FF0;color:#000}</style>";
+c=d.insertBefore(c.lastChild,d.firstChild);b.hasCSS=!!c}g||t(a,b);return a}var k=l.html5||{},s=/^<|^(?:button|map|select|textarea|object|iframe|option|optgroup)$/i,r=/^(?:a|b|code|div|fieldset|h1|h2|h3|h4|h5|h6|i|label|li|ol|p|q|span|strong|style|table|tbody|td|th|tr|ul)$/i,j,o="_html5shiv",h=0,n={},g;(function(){try{var a=f.createElement("a");a.innerHTML="<xyz></xyz>";j="hidden"in a;var b;if(!(b=1==a.childNodes.length)){f.createElement("a");var c=f.createDocumentFragment();b="undefined"==typeof c.cloneNode||
+"undefined"==typeof c.createDocumentFragment||"undefined"==typeof c.createElement}g=b}catch(d){g=j=!0}})();var e={elements:k.elements||"abbr article aside audio bdi canvas data datalist details figcaption figure footer header hgroup mark meter nav output progress section summary time video",version:"3.6.2pre",shivCSS:!1!==k.shivCSS,supportsUnknownElements:g,shivMethods:!1!==k.shivMethods,type:"default",shivDocument:q,createElement:p,createDocumentFragment:function(a,b){a||(a=f);if(g)return a.createDocumentFragment();
+for(var b=b||i(a),c=b.frag.cloneNode(),d=0,e=m(),h=e.length;d<h;d++)c.createElement(e[d]);return c}};l.html5=e;q(f)})(this,document);
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 <style>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 /*!
  * Bootstrap v3.3.4 (http://getbootstrap.com)
@@ -3119,10 +3188,8 @@ fieldset[disabled] .btn-default.active {
 }
 .btn-primary {
   color: #fff;
-  background-color:#337ab7; 
+  background-color: #337ab7;
   border-color: #2e6da4;
-  width:100px;
-  height:32px;
 }
 .btn-primary:hover,
 .btn-primary:focus,
@@ -3168,8 +3235,6 @@ fieldset[disabled] .btn-primary.active {
   color: #fff;
   background-color: #5cb85c;
   border-color: #4cae4c;
-  width:100px;
-  height:32px;
 }
 .btn-success:hover,
 .btn-success:focus,
@@ -3215,8 +3280,6 @@ fieldset[disabled] .btn-success.active {
   color: #fff;
   background-color: #5bc0de;
   border-color: #46b8da;
-  width:100px;
-  height:32px;
 }
 .btn-info:hover,
 .btn-info:focus,
@@ -3307,8 +3370,6 @@ fieldset[disabled] .btn-warning.active {
   color: #fff;
   background-color: #d9534f;
   border-color: #d43f3a;
-  width:100px;
-  height:64px;
 }
 .btn-danger:hover,
 .btn-danger:focus,
@@ -6645,422 +6706,125 @@ button.close {
 
 
 
-/*-----------------------------------
-	General Styles
------------------------------------*/
 
-body{
-	font-size : 14px;
-	background-color: #f2f6f9;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+body {
+  padding-top: 40px;
+  background-color: #DCDCDC;
 }
 
-ul{
-	list-style-type: none;
+.transition(@transition) {
+  -webkit-transition: @transition;
+  transition: @transition;
 }
 
-a:hover {
-	text-decoration:none;
+.scale(@ratio) {
+  -webkit-transform: scale(@ratio);
+-ms-transform: scale(@ratio); // IE9+
+transform: scale(@ratio);
 }
 
+.flat{
+  .plan{
+    border-radius: 6px;
+    list-style: none;
+    padding: 0 0 20px;
+    margin: 0 0 15px;
+    background:#fff;
+    text-align: left;
+    li{
+      padding: 10px 15px;
+      color: #ccc;
+      background: #CDC1C5;
+      border-top: 1px solid #f5f5f5;
+      .transition(300ms);
+      &.plan-price{
+        border-top: 0;
+      }
+      &.plan-name{
+        border-radius: 6px 6px 0 0;
+        padding: 15px;
+        font-size: 24px;
+        line-height: 24px;
+        background: #e74c3c;
+        margin-bottom: 30px;
+        border-top: 0;
+      }
 
-/*-----------------------------------
-	Navbar 
------------------------------------*/
+      >strong{
+        color: #e74c3c;
+      }
 
-.minicart{
-	background:url(../images/sprite.png);
-	background-position: -156px 11px;
-	background-repeat:no-repeat;
-	width: 40px;
-	height: 50px;
-	padding-right: 32px;
+      &.plan-action{
+        margin-top: 10px;
+        border-top: 0;
+      }
+    }
+
+    &.featured{
+      .scale(1.1);
+      li{
+        &.plan-name{
+          background:#000;
+        }
+      }
+      &:hover{
+        li{
+          &.plan-name{
+            background: #c0392b;
+          }
+        }
+      }
+    }
+
+    &:hover{
+      li{
+        &.plan-name{
+          background: #000;
+        }
+      }
+    }
+  }
 }
 
-.navbar{
-	background-color: #4ea6bc;
-	padding: 15px ;
-	border-radius: 0;
-	margin: 0;
-}
-
-.navbar-brand{
-	color: #fff;
-	font-family: Open Sans, sans-serif;
-	padding-left: 32px;
-}
-
-.navbar-brand:hover{
-	color: #fff;
-}
-
-/*-----------------------------------
-	Breadcrumb 
------------------------------------*/
-
-.breadcrumb > .active a{
-	color: #468595;
-	font-weight: bold;
-	text-transform: uppercase;
-}
-
-.breadcrumb li a{
-	color :#b3d4dc;
-	font-weight: bold;
-	text-transform: uppercase;
-}
-
-.breadcrumb>li+li:before {
-	content: "\00BB";
-}
-
-.breadcrumb{
-	margin-bottom: 100px;
-	background-color: #ffffff;
-}
-
-.breadcrumbBox{
-	background-color: #ffffff;
-	height: 100px;
-	margin-bottom: 100px;
-	padding-top: 32px;
-}
-
-/*----------------------------------- 
-	Main
------------------------------------*/
-
-.container.text-center{
-	padding: 0 32px;
-}
-
-/*-----------------------------------  
-	Logo and description 
------------------------------------ */
-
-
-.col-md-5.col-sm-12{
-	padding: 0;
-}
-
-.col-md-5.col-sm-12 h1{
-	color: #595c5f;
-	font-size: 24px;
-	font-weight: bold;
-	margin-bottom:30px;
-	text-align: left;
-}
-
-.col-md-5.col-sm-12 p{
-	color: #898e92;
-	line-height: 1.5;
-	max-width: 400px;
-	text-align: justify;
-}
-
-.bigcart{
-	background:url(../images/sprite.png);
-	background-position: 0px 11px;
-	background-repeat:no-repeat;
-	width: 155px;
-	height: 120px;
-	margin:0 0 40px 60px;
+#footer {
+  margin-top: 100px;
+  padding-bottom: 30px;
 }
 
 
-/*-----------------------------------  
-	Cart items list
------------------------------------*/
-
-.col-md-7.col-sm-12{
-	padding-left: 50px ;
-	margin-bottom: 72px;
-}
-
-.row{
-	box-shadow: 0 1px 0 #e1e5e8;
-	padding-bottom :0;
-	padding-left: 15px;
-	background-color: #ffffff;
-	margin-bottom: 11px;
-        width:1000px;
-}
-
-.row span{
-	padding: 20px 0 6px 0;
-}
-
-/* Column Captions */
-
-.columnCaptions{
-	color: #7e93a7;
-	font-size:12px;
-	text-transform: uppercase;
-	padding: 0;
-	box-shadow: 0 0 0;
-	background-color: #f2f6f9;
-}
-
-.columnCaptions span:first-child{
-	padding-left:8px;
-}
-
-.columnCaptions span{
-	padding: 0 21px 0 0;
-}
-
-.columnCaptions span:last-child{
-	float: right;
-	padding-right: 72px;
-}
 
 
-/* Items */
-
-.itemName{	
-	color: #727578;
-	font-size :16px;
-	font-weight: bold;
-	float: left;
-	padding-left:25px;
-}
 
 
-.quantity{	
-	color: #4ea6bc;
-	font-size :18px;
-	font-weight: bold;
-	float : left;
-	width: 42px;
-	padding-left: 7px;
-}
 
+str
+{
 
-.popbtn{
-	background-color: #e6edf3;
-	margin-left: 25px;
-	height: 64px;
-	width: 100px;
-	padding: 0px 0 0 0px !important;
-	float: right;
-	cursor: pointer;
-}
-
-.arrow{
-	width: 0; 
-	height: 0; 
-	border-left: 6px solid transparent;
-	border-right: 6px solid transparent;
-	border-top: 6px solid #858e97;
-}
-
-.price{
-	color: #f06953;
-	font-size :18px;
-	font-weight: bold;
-	float: right;
-}
-
-.rate{
-	color: #f06953;
-	font-size :18px;
-	font-weight: bold;
-	float: right;
-        padding: 20px 40px 0 20px
-}
-
-/* Totals */
-
-.totals{
-	background-color: #f2f6f9;
-}
-
-.totals span{
-	padding: 40px 15px 40px 0;
-}
-
-.totals .price{
-	float: left;
-        color:green;
-}
-
-.totals .itemName{
-	margin-top: 1px;
-        color:black; 
-}
-
-.totals .order{
-	float: right;
-	padding: 0;
-	margin-top: 40px; 
-	padding-left: 5px;
-	cursor: pointer;
-}
-
-.order a{
-	background-color: #f08573;
-	color: #fbfffa;
-	font-weight: bold;
-	border-radius: 2px;
-	padding: 20px 30px;
-}
-
-
-/* Popovers */
-
-.popover{
-	border-radius: 3px;
-	box-shadow: 0 0 1px 1px rgba(0,0,0,0.2);
-	border: 0;
-	background-color: #ffffff;
-}
-
-.popover.bottom{
-	margin-top: -9px;
-}
-
-.glyphicon{
-	width: 24px;
-	font-size: 24px;
-	padding: 0;
-}
-
-.glyphicon-pencil{
-	color: #858e97;
-	margin: 7px 12px 7px 10px;
-}
-
-.glyphicon-remove{
-	color: #f06953;
-	margin-right: 10px;
-}
-
-/*-----------------------------------  
-	Media Queries 
------------------------------------ */
-
-/* Tablet size */
-
-@media (max-width: 992px) {
-
-	.container.text-center{
-		padding: 0 15px;
-	}
-
-	.breadcrumb{
-		margin-bottom: 32px;
-	}
-
-	.bigcart{
-		margin: 0 auto 40px auto;
-	}
-
-	.col-md-5.col-sm-12 h1{
-		text-align: center;
-	}
-
-	.col-md-5.col-sm-12 p{
-		margin: 0 auto 64px auto;
-		text-align: justify;
-	}
-
-	.col-md-7.col-sm-12{
-		padding-left: 10px ;
-		padding-right: 50px;
-	}
-
-	.totals{
-		box-shadow: 0 0 0;
-	}
-
-}
-
-
-/* Mobile device size */
-
-@media (max-width: 768px) {
-
-	.navbar{ 
-		padding:10px 0;
-	}
-	
-	.minicart{
-		margin-right: -1px;
-		padding-right: 0;
-	}
-
-	.navbar-brand{
-		padding-left: 0;
-	}
-
-	.breadcrumbBox{
-		height:80px;
-		padding-top:21px;
-	}
-
-	.col-md-5.col-sm-12 p{
-		max-width: 300px;
-	}
-
-	.col-md-7.col-sm-12{
-		padding-left: 0;
-		padding-right: 15px;
-		margin-bottom: 32px;
-	}
-
-	.col-md-7.col-sm-12 ul{
-		padding-left: 15px ;
-	}
-
-	.columnCaptions span{
-		padding: 0 21px 0 0;
-	}
-
-	.columnCaptions span:last-child{
-		float: right;
-		padding-right: 42px;
-	}
-
-	.row{
-		padding-bottom:10px;
-	}
-
-	.quantity{	
-		width: 23px;
-		padding-right: 40px !important;
-	}
-
-	.popbtn{
-		background-color: white;
-		position: absolute;
-		height:40px;
-		right: 0;
-	}
-
-	.price{	
-		position: absolute;
-		right: 42px;
-	}
-
-	.totals{
-		padding: 0;
-	}
-
-	.totals .price{
-		position: static;
-	}
-
-	/* Change Bootstrap's default popover to make it look nice on a mobile device */
-
-	.popover.bottom>.arrow{
-		left: auto;
-		margin-left: 0;
-		right: 5px;
-	}
-
-	.popover.bottom{
-		margin-top: 7px;
-		margin-left: -40px;
-	}
+color=red;
 
 }
 
@@ -7070,190 +6834,394 @@ a:hover {
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+body {
+  padding-top: 40px;
+  background-color: #DCDCDC;
+}
+.flat .plan {
+  border-radius: 6px;
+  list-style: none;
+  padding: 0 0 20px;
+  margin: 0 0 15px;
+  background: #fff;
+  text-align: left;
+}
+.flat .plan li {
+  padding: 10px 15px;
+  color: #ccc;
+  border-top: 1px solid #f5f5f5;
+  -webkit-transition: 300ms;
+  transition: 300ms;
+}
+.flat .plan li.plan-price {
+  border-top: 0;
+}
+.flat .plan li.plan-name {
+  border-radius: 6px 6px 0 0;
+  padding: 15px;
+  font-size: 24px;
+  line-height: 24px;
+  color: #fff;
+  background: #e74c3c;
+  margin-bottom: 30px;
+  border-top: 0;
+}
+.flat .plan li > strong {
+  color: #e74c3c;
+}
+.flat .plan li.plan-action {
+  margin-top: 10px;
+  border-top: 0;
+}
+.flat .plan.featured {
+  -webkit-transform: scale(1.1);
+  -ms-transform: scale(1.1);
+  transform: scale(1.1);
+}
+.flat .plan.featured li.plan-name {
+  background: #000;
+}
+.flat .plan.featured:hover li.plan-name {
+  background: #c0392b;
+}
+.flat .plan:hover li.plan-name {
+  background: #000;
+}
+#footer {
+  margin-top: 100px;
+  padding-bottom: 30px;
+}
 
 
 
 </style>
-	
-	</head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="">
+    <meta name="author" content="">
 
-	<body>
-		
-		<nav class="navbar">
-			<div class="container">
-				<a class="navbar-brand" href="#">Your Order</a>
-				<div class="navbar-right">
-					<div class="container minicart"><!--{% load staticfiles %}<img src="{% static "restaurant/cart.jpg"%}">--></div>
-				</div>
-			</div>
-		</nav>
-		
-		<div class="container-fluid breadcrumbBox text-center">
-			<ol class="breadcrumb">
-				<li class="active"><a href="/restaurant/logout">Logout</a></li>
-				
-				<li class="active"><a href="index" >Back to Menu</a></li>
-                                <li class="active"><a href="status" >View Order Status</a></li>
-			</ol>
-		</div>
-		
-		<div class="container text-center"> 
+    <title>DIGI-MENU KITCHEN</title>
 
-			<!--<div class="col-md-5 col-sm-12">
-				<div class="bigcart"></div>
-				<h1>Your shopping cart</h1>
-				<p>
-					This is a free and <b><a href="http://tutorialzine.com/2014/04/responsive-shopping-cart-layout-twitter-bootstrap-3/" title="Read the article!">responsive shopping cart layout, made by Tutorialzine</a></b>. It looks nice on both desktop and mobile browsers. Try it by resizing your window (or opening it on your smartphone and pc).
-				</p>
-			</div>-->
+    <!-- Bootstrap core CSS -->
+    <link href="css/bootstrap1.min.css" rel="stylesheet">
 
-		<!--	<div class="row">
+    <!-- Custom styles for this template -->
+    <link href="css/main.css" rel="stylesheet">
 
-				<div class="col-sm-4" ></div>
-				<div class="col-sm-4" ></div>
-				<a class="col-md-4 col-sm-4 text-right btn btn-primary btn-lg active pull-center-right" href="index.html" role="button">Back to Menu</a>
-		
-			</div>
-			-->
-			<div class="col-md-7 col-sm-12 text-left">
-				<ul>
-					<li class="row list-inline columnCaptions">
-						<span>Quantity</span>
-				
-	 			           
-						<span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Item</span>
-						<span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Rate</span>
+    <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+      <script src="js/html5shiv.js"></script>
+      <script src="js/respond.min.js"></script>
+      <![endif]-->
+  </head>
 
-<span>Subtotal&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
-					</li>
+  <body>
+
+    <div class="container">
+
+        <h1 class="page-header">HELL'S KITCHEN</h1>
+
+        <p>&nbsp;</p>
+
 
 {% if latest_question_list %}
-    
+<div class="row flat">    
     {% for question in latest_question_list %}
 
 
-					<li class="row">
-						<span class="quantity">{{ question.quantity}}</span>
- 						
-
-
-<span class="itemName">&nbsp; &nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{{ question.item_name}}</span>
-						<!--<span class="popbtn"><a class="arrow"></a></span>--> 
-	<span class="popbtn">{% with n=question.item_name.split|join:"_" %}
-	    <form action="cart.html" method="post">{% csrf_token %}	
-		<button name="delete" class="btn-danger active" onclick="alert('{{question.item_name}}'+' is deleted from the cart!!!')" value={{ n }}><!--<strong>--><font face="monospace" size="15">x</font><!--</strong>--></button>
-            </form>              
-			     {% endwith %}</span>
-<span class="popbtn">{% with n=question.item_name.split|join:"_" %}
-	    <form action="cart.html" method="post">{% csrf_token %}	
-		<button name="add" class=btn-success value={{ n }}><strong>+</strong></button>
-            </form>             
-			     
-	    <form action="cart.html" method="post">{% csrf_token %}	
-		<button name="dec" class=btn-primary active value={{ n }}><strong>-</strong></button>
-            </form>              
-			     {% endwith %}</span>
-       	<span class="popbtn"><div class="rate">₹{% widthratio question.price 1 question.quantity %}</div></span>
-	
-       
-						<span class="price">₹{{ question.price }} &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
-</span>
-			  
-
- <!--{% with n=question.item_name.split|join:"_" %}
-	<button name="delete" onclick="alert('{{question.item_name}}'+' is deleted from the cart!!!')" value={{ n }}>delete</button>
-  {% endwith %}-->
-					
-
-
-</li>
-
-                                         
+        
+            <div class="col-lg-3 col-md-3 col-xs-6">
+                <ul class="plan plan2 featured">
+                    <li class="plan-name">
+                        TABLE NO:{{question.table}}
+                    </li>
+                    <li class="plan-price">
+                       <b><font color="black">ITEM NAME:&nbsp; </font></b><strong>{{ question.menu_item}}</strong>
+                    </li>
+                     
+                    <li class="plan-price"><b><font color="black">QUANTITY:&nbsp; </font></b>
+                        <strong>{{question.quantity}}</strong>
+                    </li>
+                    
+                    <li class="plan-price"><b><font color="black">STATUS:&nbsp; </font></b>
+                        <strong> {{question.status}}</strong> 
+                    </li>
+             <form action="kitchen" method="get"><strong> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<select name={{question.orderid}}>
+<li  class="plan-price">
+  <option value="Nochange">No Change</option>
+  <option value="Received">Received</option>
+  <option value="Preparing">Preparing</option>
+  <option value="Prepared">Prepared</option>
+  <option value="Delivered">Delivered</option>
+  <option value="Unavailable">Unavailable</option>
+</select> </strong></li>
  
 
 
+
+
+<br><br><br>
+                  <!--  <input type="checkbox" name="btn" id="btn"> preparation started
+<label class="btn" for="btn"></label>
+                    <input type="checkbox" name="btn" id="btn"> ready to serve
+<label class="btn" for="btn"></label>-->
+                    <!--<li>
+                        <strong>5GB</strong> Storage
+                    </li>
+                    <li>
+                        <strong>1GB</strong> RAM
+                    </li>
+                    <li>
+                        <strong>400GB</strong> Bandwidth
+                    </li>
+                    <li>
+                        <strong>10</strong> Email Address
+                    </li>
+                    <li>
+                        <strong>Forum</strong> Support
+                    </li>-->
+                    <!--<li class="plan-action">
+                        <!--<a href="#" class="btn btn-danger btn-lg">Ready to serve</a>-->
+                    <!--</li>-->
+                </ul>
+            </div>
 {% endfor %}
+</div>
 {% else %}
     <h2>No items in cart.</h2>
 {% endif %}
+           <!-- <div class="col-lg-3 col-md-3 col-xs-6">
+                <ul class="plan plan2 featured">
+                    <li class="plan-name">
+                        TABLE #2
+                    </li>
+                    <li class="plan-price">
+                        <strong>$39</strong> / month
+                    </li>
+                    <li>
+                        <strong>5GB</strong> Storage
+                    </li>
+                    <li>
+                        <strong>1GB</strong> RAM
+                    </li>
+                    <li>
+                        <strong>400GB</strong> Bandwidth
+                    </li>
+                    <li>
+                        <strong>10</strong> Email Address
+                    </li>
+                    <li>
+                        <strong>Forum</strong> Support
+                    </li>
+                    <li class="plan-action">
+                     <a href="#" class="btn btn-danger btn-lg">Ready to serve</a>
+                 </li>
+             </ul>
+         </div>
+         
+         <div class="col-lg-3 col-md-3 col-xs-6">
+                <ul class="plan plan2 featured">
+                    <li class="plan-name">
+                        TABLE #3
+                    </li>
+                    <li class="plan-price">
+                        <strong>$39</strong> / month
+                    </li>
+                    <li>
+                        <strong>5GB</strong> Storage
+                    </li>
+                    <li>
+                        <strong>1GB</strong> RAM
+                    </li>
+                    <li>
+                        <strong>400GB</strong> Bandwidth
+                    </li>
+                    <li>
+                        <strong>10</strong> Email Address
+                    </li>
+                    <li>
+                        <strong>Forum</strong> Support
+                    </li>
+                    <li class="plan-action">
+                     <a href="#" class="btn btn-danger btn-lg">Ready to serve</a>
+                 </li>
+             </ul>
+         </div>
+         
+
+         <div class="col-lg-3 col-md-3 col-xs-6">
+                <ul class="plan plan2 featured">
+                    <li class="plan-name">
+                        TABLE #4
+                    </li>
+                    <li class="plan-price">
+                        <strong>$39</strong> / month
+                    </li>
+                    <li>
+                        <strong>5GB</strong> Storage
+                    </li>
+                    <li>
+                        <strong>1GB</strong> RAM
+                    </li>
+                    <li>
+                        <strong>400GB</strong> Bandwidth
+                    </li>
+                    <li>
+                        <strong>10</strong> Email Address
+                    </li>
+                    <li>
+                        <strong>Forum</strong> Support
+                    </li>
+                    <li class="plan-action">
+                     <a href="#" class="btn btn-danger btn-lg">Ready to serve</a>
+                 </li>
+             </ul>
+         </div>
+
+         <div class="col-lg-3 col-md-3 col-xs-6">
+                <ul class="plan plan2 featured">
+                    <li class="plan-name">
+                        TABLE #5
+                    </li>
+                    <li class="plan-price">
+                        <strong>$39</strong> / month
+                    </li>
+                    <li>
+                        <strong>5GB</strong> Storage
+                    </li>
+                    <li>
+                        <strong>1GB</strong> RAM
+                    </li>
+                    <li>
+                        <strong>400GB</strong> Bandwidth
+                    </li>
+                    <li>
+                        <strong>10</strong> Email Address
+                    </li>
+                    <li>
+                        <strong>Forum</strong> Support
+                    </li>
+                    <li class="plan-action">
+                     <a href="#" class="btn btn-danger btn-lg">Ready to serve</a>
+                 </li>
+             </ul>
+         </div>
+
+         <div class="col-lg-3 col-md-3 col-xs-6">
+                <ul class="plan plan2 featured">
+                    <li class="plan-name">
+                        TABLE #6
+                    </li>
+                    <li class="plan-price">
+                        <strong>$39</strong> / month
+                    </li>
+                    <li>
+                        <strong>5GB</strong> Storage
+                    </li>
+                    <li>
+                        <strong>1GB</strong> RAM
+                    </li>
+                    <li>
+                        <strong>400GB</strong> Bandwidth
+                    </li>
+                    <li>
+                        <strong>10</strong> Email Address
+                    </li>
+                    <li>
+                        <strong>Forum</strong> Support
+                    </li>
+                    <li class="plan-action">
+                     <a href="#" class="btn btn-danger btn-lg">Ready to serve</a>
+                 </li>
+             </ul>
+         </div>
 
 
 
 
+         <div class="col-lg-3 col-md-3 col-xs-6">
+            <ul class="plan plan2 featured">
+                <li class="plan-name">
+                    TABLE #7
+                </li>
+                <li class="plan-price">
+                    <strong>$199</strong> / month
+                </li>
+                <li>
+                    <strong>50GB</strong> Storage
+                </li>
+                <li>
+                    <strong>8GB</strong> RAM
+                </li>
+                <li>
+                    <strong>1024GB</strong> Bandwidth
+                </li>
+                <li>
+                    <strong>Unlimited</strong> Email Address
+                </li>
+                <li>
+                    <strong>Forum</strong> Support
+                </li>
+                <li class="plan-action">
+                 <a href="#" class="btn btn-danger btn-lg">Ready to serve</a>
+             </li>
+         </ul>
+     </div>
 
-
-
-			<!--		<li class="row">
-						<span class="quantity">50</span>
-						<span class="itemName">Party Cups</span>
-						<span class="popbtn"><a class="arrow"></a></span>
-						<span class="price">$5.00</span>
-					</li>
-					<li class="row">
-						<span class="quantity">20</span>
-						<span class="itemName">Beer kegs</span>
-						<span class="popbtn"><a class="arrow"></a></span>
-						<span class="price">$919.99</span>				
-					</li>
-					<li class="row">
-						<span class="quantity">18</span>
-						<span class="itemName">Pound of beef</span>
-						<span class="popbtn"><a class="arrow"></a></span>
-						<span class="price">$269.45</span>
-					</li>
-					<li class="row">
-						<span class="quantity">1</span>
-						<span class="itemName">Bullet-proof vest</span>
-						<span class="popbtn"  data-parent="#asd" data-toggle="collapse" data-target="#demo"><a class="arrow"></a></span>
-						<span class="price">$450.00</span>				
-					</li> -->
-
-					<li class="row totals">
-                                                <div class="col-sm-4"></div>
-                                                <div class="col-sm-4"></div>
-						<span class="itemName">Total:</span>
-						<span class="price">₹{{Total}}</span>
-                                     <form action="status" method="get"><select name="tableno">
-  <option value="" selected default disabled>Please enter table no...</option>
-  <option value="1">1</option>
-  <option value="2">2</option>
-  <option value="3">3</option>
-  <option value="4">4</option>
-</select>
-<button name="kitchen" value="on"><strong>Submit</strong></button>
-<!--<input type="submit" value="SUBMIT">--></form>
-	<!--			<		<span class="order"> <a href='welcome.html' class="text-center">ORDER</a></span>-->
-					</li> 
-				</ul>
-			</div>
-
-		</div> 
-		
-
-		<!-- The popover content -->
-
-		<div id="popover" style="display: none">
-			<a href="#"><span class="glyphicon glyphicon-pencil"></span></a>
-			<a href="#"><span class="glyphicon glyphicon-remove"></span></a>
-		</div>
-		
-		<!-- JavaScript includes -->
-
-		<script src="http://code.jquery.com/jquery-1.11.0.min.js"></script> 
-		<script src="assets/js/bootstrap.min.js"></script>
-		<script src="assets/js/customjs.js"></script>
-
-	</body>
+     <div class="col-lg-3 col-md-3 col-xs-6">
+        <ul class="plan plan2 featured">
+            <li class="plan-name">
+                TABLE #8
+            </li>
+            <li class="plan-price">
+                <strong>$999</strong> / month
+            </li>
+            <li>
+                <strong>50GB</strong> Storage
+            </li>
+            <li>
+                <strong>8GB</strong> RAM
+            </li>
+            <li>
+                <strong>1024GB</strong> Bandwidth
+            </li>
+            <li>
+                <strong>Unlimited</strong> Email Address
+            </li>
+            <li>
+                <strong>Forum</strong> Support
+            </li>
+            <li class="plan-action">
+             <a href="#" class="btn btn-danger btn-lg">Ready to serve</a>
+         </li>
+     </ul>
+ </div>
+</div>--><!--
+<form action="kitchen" method="get"> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<center><select name="table">
+<li  class="plan-price">
+  <option value="0">Select table to delete</option>
+  <option value="1">Table no: 1</option>
+  <option value="2">Table no: 2</option>
+  <option value="3">Table no: 3</option>
+  <option value="4">Table no: 4</option>
+</select><center></li>-->
+<!--</div>--> <!-- /container --><br><br><br><center>
+<button name="kitchen" class="btn-danger" value="on" onclick="history.go(0)"><strong>Submit</strong></button></form>
+<div id="footer"></center>
+  <div class="container">
+   <!-- <p class="text-muted credit">By <a target="_blank" href="http://shapebootstrap.net">shapebootstrap.net</a></p>-->
+</div>
+</div>
+</body>
 </html>

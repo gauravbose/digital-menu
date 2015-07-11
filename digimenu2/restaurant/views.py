@@ -1,7 +1,7 @@
 from django.shortcuts import render
 from django.http import HttpResponse
 from django.http import HttpResponseRedirect
-from .models import Menu,Cuisine,Cart
+from .models import Menu,Cuisine,Cart,Usertable,Kitchen,Bill
 from django.template import Context,loader,RequestContext
 from django.template.context_processors import csrf
 from django.shortcuts import render_to_response
@@ -13,6 +13,7 @@ from django.contrib.auth.forms import UserCreationForm
 from forms import UserForm 
 from django.db import connection
 from django import forms
+from random import randint
 #import easygui
 register = template.Library()
 
@@ -206,8 +207,8 @@ def desserts(request):
 #    })
 #    #o=', '.join([p.cuisine_name for p in output])
 #    return HttpResponse(t.render(c))
-
 '''
+
 
 
 
@@ -237,28 +238,28 @@ def italian(request,question_id):
    # dict={"one":"first","two":"second","three":"third","path":'{% static "restaurant/1.jpg" %}'}
     a=request.POST.get('item')
     ms=" added in the cart"
+    
     if a is not None:
          a=a.replace('_',' ') 
          username = None
          if request.user.is_authenticated():
             username = request.user
-
-         q=Menu.objects.filter(menu_item=a)
-         for i in q:
-           p=i.price
-         m=Cart.objects.all().filter(item_name=a)
-         if len(m)==0:
-              x=Cart(item_name=a,price=p,user=username)
-	      x.quantity+=1
-              x.save()
-         else:
+         n=Cart.objects.all().filter(item_name=a,user=username)
+         if(len(n)==0):
+           q=Menu.objects.filter(menu_item=a)
+           for i in q:
+              p=i.price
+           m=Cart.objects.all().filter(item_name=a)
+      
+           x=Cart(item_name=a,price=p,user=username)
+	   x.quantity=1
+           x.save()
+  
               #easygui.msgbox("already added to cart!",title="simple gui")
           #    for f in m:
           #       f.quantity+=1
           #       f.save()
-              for f in m:
-                 if (f.quantity==1):
-                     ms=' already added in the cart'
+              
 
     c=RequestContext(request, {
         'latest_question_list': output,'msg':ms,'cuisine':z,'id':question_id
@@ -352,8 +353,110 @@ def chaat(request):
     })
     return HttpResponse(t.render(c))
 
+def kitchen(request):
+  t=loader.get_template('restaurant/kitchen.html')
+#  a=request.GET.get('tableno')
+#  b='off'
+#  b=request.GET.get('kitchen')
+  
+#  u= None
+#  if request.user.is_authenticated():
+#            u=request.user
+#  w=Usertable.objects.all().filter(user=u)
+  
+#  if(b=="on"):
+#     m=Cart.objects.all().filter(user=u)
+#     for i in m:
+#       h=i.item_name
+#       p=i.quantity
+#       k=Kitchen(table=a,menu_item=h,quantity=p)
+#       k.save()
+#       q=Usertable(table_no=a,user=u)
+#       q.save()
+#  Cart.objects.all().filter(user=u).delete()
+  ######
+#  b=Kitchen.objects.all()
+#  for j in b:
+#      z=(str(j.table)+"_"+(j.menu_item)).split()
+#      j.orderid=""
+#      o=0
+#      for o in range(len(z)):
+#       j.orderid+=z[o]
+#       j.save()
+  ######
+  
+  b1=Kitchen.objects.all().order_by('-id')
+  for s in b1:
+       x=request.GET.get(s.orderid)
+       if x is not None:
+        if x=="Unavailable":
+          item=s.menu_item
+          tab=s.table
+          us=Usertable.objects.filter(table_no=tab)
+          for ta in us:
+            ee=ta.user        
+          Bill.objects.all().filter(user=ee,item_name=item).delete()
 
+	if x!="Nochange":	
+	       if(x!='Delivered'):
+	         s.status=x
+	         s.save()
+	       else:
+	         s.delete()
+ 
+  
 
+  r=request.GET.get('table')
+  
+  #if r!=0:
+  #      Kitchen.objects.all().filter(table=r).delete()
+  #      Usertable.objects.all().filter(table_no=r).delete()
+  #      #Bill.objects.all().filter(user=use).delete()
+  b2=Kitchen.objects.all().order_by('-id')       
+   
+  c=RequestContext(request, {
+         'latest_question_list':b2    })
+  return HttpResponse(t.render(c))
+
+'''
+def kitchen1(request,question_id):
+  t=loader.get_template('restaurant/kitchen.html')
+  a=request.GET.get('tableno')
+  b=request.GET.get('kitchen')
+  
+  u= None
+  if request.user.is_authenticated():
+            u=request.user
+  if(b=="on"):
+     m=Cart.objects.all().filter(user=u)
+     for i in m:
+       h=i.item_name
+       p=i.quantity
+       k=Kitchen(table=a,menu_item=h,quantity=p)
+       k.save()
+       q=Usertable(table_no=a,user=u)
+       q.save()
+  Cart.objects.all().filter(user=u).delete()
+  b=Kitchen.objects.all()
+  for j in b:
+      z=(str(j.table)+"_"+(j.menu_item)).split()
+      j.orderid=""
+      o=0
+      for o in range(len(z)):
+       j.orderid+=z[o]
+       
+       j.save()
+  b1=Kitchen.objects.all()
+  for s in b1:
+       x=request.GET.get(s.orderid)
+       s.status=x
+       s.save()
+
+  c=RequestContext(request, {
+         'table':a,'latest_question_list':b1
+    })
+  return HttpResponse(t.render(c))
+'''
 def southindian(request):
     output=Menu.objects.all().filter(cuisine_name_id="South Indian")
 
@@ -380,7 +483,169 @@ def southindian(request):
     })
     return HttpResponse(t.render(c))
 
+def bill(request,question_id):
+  t=loader.get_template('restaurant/bill.html')
+  u= None
+  if request.user.is_authenticated():
+            u=request.user
+  x=Bill.objects.all().filter(user=u)
+  total=0
+  for i in x:
+       total=total+((i.price)*(i.quantity))
+   
 
+  c=RequestContext(request, {
+        'Total':total,'latest_question_list': x
+    })
+
+  return HttpResponse(t.render(c))
+
+
+def bill1(request):
+  t=loader.get_template('restaurant/bill.html')
+  u= None
+  if request.user.is_authenticated():
+            u=request.user
+  x=Bill.objects.all().filter(user=u)
+  total=0
+  for i in x:
+       total=total+((i.price)*(i.quantity))
+   
+
+  c=RequestContext(request, {
+        'Total':total,'latest_question_list': x
+    })
+
+  return HttpResponse(t.render(c))
+
+
+
+
+def status1(request,question_id):
+  t=loader.get_template('restaurant/status.html')
+  a=request.GET.get('tableno')
+  b='off'
+  b=request.GET.get('kitchen')
+  
+  u= None
+  if request.user.is_authenticated():
+            u=request.user
+  w=Usertable.objects.all().filter(user=u)
+  
+  if(b=="on"):
+     m=Cart.objects.all().filter(user=u)
+     
+     for i in m:
+       h=i.item_name
+       p=i.quantity
+       d=i.price
+       k=Kitchen(table=a,menu_item=h,quantity=p,status="Recieved")
+       k.save()
+       bil=Bill(item_name=h,quantity=p,price=d,user=u)
+       bil.save()
+       q=Usertable(table_no=a,user=u)
+       q.save()
+  Cart.objects.all().filter(user=u).delete()
+  ######
+  b=Kitchen.objects.all()
+  for j in b:
+      z=(str(j.table)+"_"+(j.menu_item)).split()
+      j.orderid=""
+      o=0
+      for o in range(len(z)):
+       j.orderid+=z[o]
+       j.save()
+  ######
+  for e in w:
+    qw=e.table_no
+  b1=Kitchen.objects.all().filter(table=qw)
+  c=RequestContext(request, {
+        'latest_question_list': b1
+    })
+    
+  return HttpResponse(t.render(c))
+
+
+
+
+def status(request):
+  t=loader.get_template('restaurant/status.html')
+  a=request.GET.get('tableno')
+  b='off'
+  b=request.GET.get('kitchen')
+  
+  u= None
+  if request.user.is_authenticated():
+            u=request.user
+  w=Usertable.objects.all().filter(user=u)
+  
+  if(b=="on"):
+     m=Cart.objects.all().filter(user=u)
+   
+     for i in m:
+       h=i.item_name
+       p=i.quantity
+       d=i.price
+       k=Kitchen(table=a,menu_item=h,quantity=p,status="Received")
+       k.save()
+       bil=Bill(item_name=h,quantity=p,price=d,user=u)
+       bil.save()
+       q=Usertable(table_no=a,user=u)
+       q.save()
+  Cart.objects.all().filter(user=u).delete()
+  ######
+  b=Kitchen.objects.all()
+  for j in b:
+      z=(str(j.table)+"_"+(j.menu_item)).split()
+      j.orderid=""
+      o=0
+      for o in range(len(z)):
+       j.orderid+=z[o]
+       j.save()
+  ######
+  for e in w:
+    qw=e.table_no
+  b1=Kitchen.objects.all().filter(table=qw)
+  c=RequestContext(request, {
+        'latest_question_list': b1
+    })
+    
+  return HttpResponse(t.render(c))
+
+def thankyou(request,question_id):
+    t=loader.get_template('restaurant/thankyou.html')
+    #a="off"
+    a=request.GET.get('item')
+    u= None
+    if request.user.is_authenticated():
+            u=request.user
+    w=Usertable.objects.all().filter(user=u)
+    #if a=="on":
+    for i in w:
+        q=i.table_no
+        i.delete()
+    Kitchen.objects.all().filter(table=q).delete()
+    Bill.objects.all().filter(user=u).delete()
+     
+    return HttpResponse(t.render()) 
+
+def thankyou1(request):
+    t=loader.get_template('restaurant/thankyou.html')
+   # a="off"
+    a=request.GET.get('item')
+    u= None
+    if request.user.is_authenticated():
+            u=request.user
+    w=Usertable.objects.all().filter(user=u)
+   # if a=="on":
+    for i in w:
+        q=i.table_no
+        i.delete()
+    Kitchen.objects.all().filter(table=q).delete()
+    Bill.objects.all().filter(user=u).delete()
+     
+    return HttpResponse(t.render()) 
+ 
 
 
 
@@ -388,6 +653,16 @@ def welcome(request):
     output=Menu.objects.all()
     #c = {}
     a=request.POST.get('item') # => [39]
+    b=Kitchen.objects.all()
+    for j in b:
+      z=(str(j.table)+"_"+(j.menu_item)).split()
+      j.orderid=""
+      o=0
+      for o in range(len(z)):
+       j.orderid+=z[o]
+       
+       j.save()
+  
   #  cursor=connection.cursor()
   #  cursor.execute("insert into restaurant_cart values(93,'"+a+"',2,3);") 
     #c.update(csrf(request))
@@ -397,7 +672,7 @@ def welcome(request):
     for i in output:
        total=total+(i.price)
     c=RequestContext(request, {
-        'latest_question_list': output,'Total':total,'a':a
+        'latest_question_list': b,'Total':total,'a':a
     })
     return HttpResponse(t.render(c))       
 #return render_to_response("welcome.html", c)

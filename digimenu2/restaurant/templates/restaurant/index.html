@@ -13298,6 +13298,8 @@ button.close {
 </head>
 
 <body><center>
+
+
 <div class="topbar animated fadeInLeftBig"></div>
 
 <!-- Header Starts -->
@@ -13362,7 +13364,7 @@ button.close {
 
 		<a href ={{ question.cuisine_id }}>
 	{% load staticfiles %}
-        <img src={% static question.image_path %} alt="img01" height="500" width="800"/>
+        <img  class="img-responsive" src={% static question.image_path %} alt="img01" height="500" width="800"/>
 		</a>
           <br><br><br><br>
         <figcaption>

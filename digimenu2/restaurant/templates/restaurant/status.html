@@ -7,6 +7,8 @@
 		<link href='http://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css'>
 		<link rel="stylesheet" type="text/css" href="assets/css/bootstrap.min.css"/>
 		<link rel="stylesheet" type="text/css" href="assets/css/custom.css"/>	
+<meta http-equiv="refresh" content="5" >
+
 
 <style>
 
@@ -6687,6 +6689,7 @@ a:hover {
 	color: #fff;
 	font-family: Open Sans, sans-serif;
 	padding-left: 32px;
+       
 }
 
 .navbar-brand:hover{
@@ -6782,7 +6785,7 @@ a:hover {
 	padding-left: 15px;
 	background-color: #ffffff;
 	margin-bottom: 11px;
-        width:1000px;
+        width:500px;
 }
 
 .row span{
@@ -7077,11 +7080,10 @@ a:hover {
 	
 	</head>
 
-	<body>
-		
+	<body>	
 		<nav class="navbar">
 			<div class="container">
-				<a class="navbar-brand" href="#">Your Order</a>
+				<a class="navbar-brand" href="#">Status of your order</a>
 				<div class="navbar-right">
 					<div class="container minicart"><!--{% load staticfiles %}<img src="{% static "restaurant/cart.jpg"%}">--></div>
 				</div>
@@ -7093,7 +7095,6 @@ a:hover {
 				<li class="active"><a href="/restaurant/logout">Logout</a></li>
 				
 				<li class="active"><a href="index" >Back to Menu</a></li>
-                                <li class="active"><a href="status" >View Order Status</a></li>
 			</ol>
 		</div>
 		
@@ -7122,21 +7123,9 @@ a:hover {
 				
 	 			           
 						<span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Item</span>
-						<span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Rate</span>
+						<span>Status&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
 
-<span>Subtotal&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+
 					</li>
 
 {% if latest_question_list %}
@@ -7149,11 +7138,11 @@ a:hover {
  						
 
 
-<span class="itemName">&nbsp; &nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{{ question.item_name}}</span>
+<span class="itemName">&nbsp; &nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{{ question.menu_item}}</span>
 						<!--<span class="popbtn"><a class="arrow"></a></span>--> 
-	<span class="popbtn">{% with n=question.item_name.split|join:"_" %}
+<!--	<span class="popbtn">{% with n=question.item_name.split|join:"_" %}
 	    <form action="cart.html" method="post">{% csrf_token %}	
-		<button name="delete" class="btn-danger active" onclick="alert('{{question.item_name}}'+' is deleted from the cart!!!')" value={{ n }}><!--<strong>--><font face="monospace" size="15">x</font><!--</strong>--></button>
+		<button name="delete" class="btn-danger active" onclick="alert('{{question.item_name}}'+' is deleted from the cart!!!')" value={{ n }}><!--<strong>--><!--<font face="monospace" size="15">x</font><!--</strong>--><!--</button>
             </form>              
 			     {% endwith %}</span>
 <span class="popbtn">{% with n=question.item_name.split|join:"_" %}
@@ -7165,10 +7154,10 @@ a:hover {
 		<button name="dec" class=btn-primary active value={{ n }}><strong>-</strong></button>
             </form>              
 			     {% endwith %}</span>
-       	<span class="popbtn"><div class="rate">₹{% widthratio question.price 1 question.quantity %}</div></span>
+       	<span class="popbtn"><div class="rate">₹{% widthratio question.price 1 question.quantity %}</div></span>-->
 	
        
-						<span class="price">₹{{ question.price }} &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+						<span class="price">{{ question.status }} &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
 </span>
 			  
 
@@ -7220,22 +7209,22 @@ a:hover {
 						<span class="price">$450.00</span>				
 					</li> -->
 
-					<li class="row totals">
+				<!--	<li class="row totals">
                                                 <div class="col-sm-4"></div>
                                                 <div class="col-sm-4"></div>
 						<span class="itemName">Total:</span>
-						<span class="price">₹{{Total}}</span>
-                                     <form action="status" method="get"><select name="tableno">
-  <option value="" selected default disabled>Please enter table no...</option>
-  <option value="1">1</option>
+						<span class="price">₹{{Total}}</span>-->
+                                        <form action="bill" method="get"><!--<select name="tableno">
+ <!-- <option value="1">1</option>
   <option value="2">2</option>
   <option value="3">3</option>
   <option value="4">4</option>
-</select>
-<button name="kitchen" value="on"><strong>Submit</strong></button>
+</select>-->
+<button name="bill"><strong>Generate Bill</strong></button>
+
 <!--<input type="submit" value="SUBMIT">--></form>
-	<!--			<		<span class="order"> <a href='welcome.html' class="text-center">ORDER</a></span>-->
-					</li> 
+					<!--	<span class="order"> <a href='welcome.html' class="text-center">ORDER</a></span>
+					</li> -->
 				</ul>
 			</div>
 
