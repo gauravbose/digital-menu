@@ -523,7 +523,67 @@ def bill1(request):
 
 def status1(request,question_id):
   t=loader.get_template('restaurant/status.html')
-  a=request.GET.get('tableno')
+  b='off'
+  b=request.GET.get('kitchen')
+  u= None
+  if request.user.is_authenticated():
+            u=request.user
+  as0=Usertable.objects.all().exclude(table_no=0,user=u)
+  as1=Usertable.objects.all().filter(table_no=0, user=u)
+  if len(as0)<8:
+    a=randint(1,8)
+    while 1: 
+                 de=Usertable.objects.all().filter(table_no=a)
+                 if len(de)!=0:
+                       a=a+1
+                       a=a%8
+                 else:
+                    break 
+  if len(as1)==0:
+     a=0
+     
+
+    		  ########  
+  #if(b=="on"):
+  m=Cart.objects.all().filter(user=u)
+     
+  for i in m:
+          h=i.item_name
+          p=i.quantity
+          d=i.price
+          k=Kitchen(table=a,menu_item=h,quantity=p,status="Recieved")
+          k.save()
+          bil=Bill(item_name=h,quantity=p,price=d,user=u)
+          bil.save()
+          q=Usertable(table_no=a,user=u)
+          q.save()
+  Cart.objects.all().filter(user=u).delete()
+  ######
+  b=Kitchen.objects.all()
+  for j in b:
+      z=(str(j.table)+"_"+(j.menu_item)).split()
+      j.orderid=""
+      o=0
+      for o in range(len(z)):
+       j.orderid+=z[o]
+       j.save()
+  ######
+  w=Usertable.objects.all().filter(user=u)
+  for e in w:
+    qw=e.table_no
+  b1=Kitchen.objects.all().filter(table=qw)
+  c=RequestContext(request, {
+        'latest_question_list': b1,'a':a
+    })
+    
+  return HttpResponse(t.render(c))
+
+
+
+
+def status(request):
+  t=loader.get_template('restaurant/status.html')
+  #a=request.GET.get('tableno')
   b='off'
   b=request.GET.get('kitchen')
   
@@ -531,20 +591,44 @@ def status1(request,question_id):
   if request.user.is_authenticated():
             u=request.user
   w=Usertable.objects.all().filter(user=u)
-  
+  ####### 
   if(b=="on"):
-     m=Cart.objects.all().filter(user=u)
+
+  	le=Usertable.objects.all().filter(table_no!=0)
+  	if len(le)==8:
+    		a=0
+  	else:
+                Usertable.objects.all().filter(user=u,table_no=0).delete()
+                a=randint(1,8)
+                while 1: 
+                 de=Usertable.objects.all().filter(table_no=a)
+                 if len(de)!=0:
+                       ct=a
+                       a=a+1
+                       a=a%8
+                       if a==0:
+                         a=ct
+                          
+                 else:
+                    break
+        
+
+
+
+    		  ########  
+  #if(b=="on"):
+        m=Cart.objects.all().filter(user=u)
      
-     for i in m:
-       h=i.item_name
-       p=i.quantity
-       d=i.price
-       k=Kitchen(table=a,menu_item=h,quantity=p,status="Recieved")
-       k.save()
-       bil=Bill(item_name=h,quantity=p,price=d,user=u)
-       bil.save()
-       q=Usertable(table_no=a,user=u)
-       q.save()
+        for i in m:
+          h=i.item_name
+          p=i.quantity
+          d=i.price
+          k=Kitchen(table=a,menu_item=h,quantity=p,status="Recieved")
+          k.save()
+          bil=Bill(item_name=h,quantity=p,price=d,user=u)
+          bil.save()
+          q=Usertable(table_no=a,user=u)
+          q.save()
   Cart.objects.all().filter(user=u).delete()
   ######
   b=Kitchen.objects.all()
@@ -568,7 +652,26 @@ def status1(request,question_id):
 
 
 
-def status(request):
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+'''
   t=loader.get_template('restaurant/status.html')
   a=request.GET.get('tableno')
   b='off'
@@ -610,7 +713,7 @@ def status(request):
         'latest_question_list': b1
     })
     
-  return HttpResponse(t.render(c))
+  return HttpResponse(t.render(c))'''
 
 def thankyou(request,question_id):
     t=loader.get_template('restaurant/thankyou.html')
