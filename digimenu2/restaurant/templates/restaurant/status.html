@@ -7081,11 +7081,12 @@ a:hover {
 	</head>
 
 	<body>	
+           
 		<nav class="navbar">
 			<div class="container">
 				<a class="navbar-brand" href="#">Status of your order</a>
 				<div class="navbar-right">
-					<div class="container minicart"><!--{% load staticfiles %}<img src="{% static "restaurant/cart.jpg"%}">--></div>
+					<div class="container minicart"><!--{% load staticfiles %}<img src="{% static "restaurant/cart.jpg"%}">--></div><h2>{{a}}</h2>
 				</div>
 			</div>
 		</nav>
@@ -7175,7 +7176,7 @@ a:hover {
 
 {% endfor %}
 {% else %}
-    <h2>No items in cart.</h2>
+    <h2>All items delivered</h2>
 {% endif %}
 
 
@@ -7220,7 +7221,7 @@ a:hover {
   <option value="3">3</option>
   <option value="4">4</option>
 </select>-->
-<button name="bill"><strong>Generate Bill</strong></button>{{a}}
+<center><button name="bill"><strong>Generate Bill</strong></button><center>
 
 <!--<input type="submit" value="SUBMIT">--></form>
 					<!--	<span class="order"> <a href='welcome.html' class="text-center">ORDER</a></span>

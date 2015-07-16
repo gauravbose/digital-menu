@@ -6957,7 +6957,7 @@ body {
                     <li class="plan-price"><b><font color="black">STATUS:&nbsp; </font></b>
                         <strong> {{question.status}}</strong> 
                     </li>
-             <form action="kitchen" method="get"><strong> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<select name={{question.orderid}}>
+             <form action="kitchen" method="post">{% csrf_token %}<strong> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<select name={{question.orderid}}>
 <li  class="plan-price">
   <option value="Nochange">No Change</option>
   <option value="Received">Received</option>
@@ -6999,7 +6999,7 @@ body {
 {% endfor %}
 </div>
 {% else %}
-    <h2>No items in cart.</h2>
+    <h2>No items in kitchen.</h2>
 {% endif %}
            <!-- <div class="col-lg-3 col-md-3 col-xs-6">
                 <ul class="plan plan2 featured">
@@ -7217,6 +7217,24 @@ body {
   <option value="4">Table no: 4</option>
 </select><center></li>-->
 <!--</div>--> <!-- /container --><br><br><br><center>
+
+
+
+<select name="tableno">
+  <option selected default disabled>Select table no. to delete</option>
+  <option value="1">1</option>
+  <option value="2">2</option>
+  <option value="3">3</option>
+  <option value="4">4</option>
+  <option value="5">5</option>
+  <option value="6">6</option>
+  <option value="7">7</option>
+  <option value="8">8</option>
+</select>
+
+
+
+
 <button name="kitchen" class="btn-danger" value="on" onclick="history.go(0)"><strong>Submit</strong></button></form>
 <div id="footer"></center>
   <div class="container">

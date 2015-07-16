@@ -354,40 +354,20 @@ def chaat(request):
     return HttpResponse(t.render(c))
 
 def kitchen(request):
-  t=loader.get_template('restaurant/kitchen.html')
-#  a=request.GET.get('tableno')
-#  b='off'
-#  b=request.GET.get('kitchen')
-  
-#  u= None
-#  if request.user.is_authenticated():
-#            u=request.user
-#  w=Usertable.objects.all().filter(user=u)
-  
-#  if(b=="on"):
-#     m=Cart.objects.all().filter(user=u)
-#     for i in m:
-#       h=i.item_name
-#       p=i.quantity
-#       k=Kitchen(table=a,menu_item=h,quantity=p)
-#       k.save()
-#       q=Usertable(table_no=a,user=u)
-#       q.save()
-#  Cart.objects.all().filter(user=u).delete()
-  ######
-#  b=Kitchen.objects.all()
-#  for j in b:
-#      z=(str(j.table)+"_"+(j.menu_item)).split()
-#      j.orderid=""
-#      o=0
-#      for o in range(len(z)):
-#       j.orderid+=z[o]
-#       j.save()
-  ######
-  
-  b1=Kitchen.objects.all().order_by('-id')
-  for s in b1:
-       x=request.GET.get(s.orderid)
+   t=loader.get_template('restaurant/kitchen.html')
+   a=request.POST.get('tableno')
+   user1=None
+   if a is not None:
+     u=Usertable.objects.all().filter(table_no=int(a))
+     for i1 in u:
+       user1=i1.user
+     if user1 is not None:
+       Bill.objects.all().filter(user=user1).delete()
+       Usertable.objects.all().filter(table_no=int(a),user=user1).delete()
+       Kitchen.objects.all().filter(table=int(a)).delete()
+   b1=Kitchen.objects.all().order_by('-id')
+   for s in b1:
+       x=request.POST.get(s.orderid)
        if x is not None:
         if x=="Unavailable":
           item=s.menu_item
@@ -406,17 +386,17 @@ def kitchen(request):
  
   
 
-  r=request.GET.get('table')
+  #r=request.GET.get('table')
   
   #if r!=0:
   #      Kitchen.objects.all().filter(table=r).delete()
   #      Usertable.objects.all().filter(table_no=r).delete()
   #      #Bill.objects.all().filter(user=use).delete()
-  b2=Kitchen.objects.all().order_by('-id')       
+   b2=Kitchen.objects.all().order_by('-id')       
    
-  c=RequestContext(request, {
+   c=RequestContext(request, {
          'latest_question_list':b2    })
-  return HttpResponse(t.render(c))
+   return HttpResponse(t.render(c))
 
 '''
 def kitchen1(request,question_id):
@@ -524,26 +504,74 @@ def bill1(request):
 def status1(request,question_id):
   t=loader.get_template('restaurant/status.html')
   b='off'
+  qw=None
+  b1=None
+  tb="Waiting..."
+  tb1="Waiting..."
   b=request.GET.get('kitchen')
   u= None
   if request.user.is_authenticated():
             u=request.user
-  as0=Usertable.objects.all().exclude(table_no=0,user=u)
-  as1=Usertable.objects.all().filter(table_no=0, user=u)
-  if len(as0)<8:
+  as0=Usertable.objects.all().exclude(table_no__gt=1000)#,user=u)
+  as1=Usertable.objects.all().filter(table_no__gt=1000, user=u)
+  as2=Usertable.objects.all().filter(user=u).exclude(table_no__gt=1000)
+  as3= Usertable.objects.all().filter(table_no__gt=1000)
+  if len(as0)<8 and len(as2)==0:#table nos. already available and user not in waiting
     a=randint(1,8)
     while 1: 
                  de=Usertable.objects.all().filter(table_no=a)
                  if len(de)!=0:
                        a=a+1
-                       a=a%8
+                       a=a%9
+                       if(a==0):
+                        a=a+1
                  else:
-                    break 
-  if len(as1)==0:
-     a=0
-     
+                    break
+  
+  if len(as0)>=8 and len(as2)==0:#puts user in waiting if table not available
+    if len(as3)==0:
+     a=1001
+    else:
+      ls= Usertable.objects.all().order_by('table_no')
+      for i in ls:
+        a=i.table_no
+      a=a+1
 
-    		  ########  
+  if len(as0)<8 and len(as3)>0:
+      ls1=Usertable.objects.all().filter(table_no__gt=1000).order_by('-table_no')
+      for i in ls1:
+         a1=i.table_no
+      u1=Usertable.objects.all().get(table_no=a1)
+      a=randint(1,8)
+      while 1: 
+                 de=Usertable.objects.all().filter(table_no=a)
+                 if len(de)!=0:
+                       a=a+1
+                       a=a%9
+                       if(a==0):
+                        a=a+1
+                 else:
+                    break
+         		 
+      k1=Kitchen.objects.all().filter(table=a1)
+      for g in k1:
+        g.table=a
+        g.save()
+      us=u1.user
+      u1.delete()
+      unew=Usertable(user=us,table_no=a)
+      unew.save()
+
+  if u is not None:
+   aa=Usertable.objects.all().filter(user=u)
+   for i in aa:
+       a=i.table_no
+       tb=a
+       if tb>1000:
+         tb1="Table Status :Waiting"
+       else:
+         tb1="Assigned table no. : "+str(a)
+ ########  
   #if(b=="on"):
   m=Cart.objects.all().filter(user=u)
      
@@ -551,7 +579,7 @@ def status1(request,question_id):
           h=i.item_name
           p=i.quantity
           d=i.price
-          k=Kitchen(table=a,menu_item=h,quantity=p,status="Recieved")
+          k=Kitchen(table=a,menu_item=h,quantity=p,status="Received")
           k.save()
           bil=Bill(item_name=h,quantity=p,price=d,user=u)
           bil.save()
@@ -569,61 +597,100 @@ def status1(request,question_id):
        j.save()
   ######
   w=Usertable.objects.all().filter(user=u)
-  for e in w:
+  if w is not None: 
+   for e in w:
     qw=e.table_no
-  b1=Kitchen.objects.all().filter(table=qw)
+   if qw is not None:
+    b1=Kitchen.objects.all().filter(table=qw)
   c=RequestContext(request, {
-        'latest_question_list': b1,'a':a
+        'latest_question_list': b1,'a':tb1
     })
     
   return HttpResponse(t.render(c))
+
 
 
 
 
 def status(request):
   t=loader.get_template('restaurant/status.html')
-  #a=request.GET.get('tableno')
   b='off'
+  qw=None
+  b1=None
+  tb=None
+  tb1=None
   b=request.GET.get('kitchen')
-  
   u= None
   if request.user.is_authenticated():
             u=request.user
-  w=Usertable.objects.all().filter(user=u)
-  ####### 
-  if(b=="on"):
-
-  	le=Usertable.objects.all().filter(table_no!=0)
-  	if len(le)==8:
-    		a=0
-  	else:
-                Usertable.objects.all().filter(user=u,table_no=0).delete()
-                a=randint(1,8)
-                while 1: 
+  as0=Usertable.objects.all().exclude(table_no__gt=1000)#,user=u)
+  as1=Usertable.objects.all().filter(table_no__gt=1000, user=u)
+  as2=Usertable.objects.all().filter(user=u).exclude(table_no__gt=1000)
+  as3= Usertable.objects.all().filter(table_no__gt=1000)
+  if len(as0)<8 and len(as2)==0:#table nos. already available and user not in waiting
+    a=randint(1,8)
+    while 1: 
                  de=Usertable.objects.all().filter(table_no=a)
                  if len(de)!=0:
-                       ct=a
                        a=a+1
-                       a=a%8
-                       if a==0:
-                         a=ct
-                          
+                       a=a%9
+                       if(a==0):
+                        a=a+1
                  else:
                     break
-        
+  
+  if len(as0)>=8 and len(as2)==0:#puts user in waiting if table not available
+    if len(as3)==0:
+     a=1001
+    else:
+      ls= Usertable.objects.all().order_by('table_no')
+      for i in ls:
+        a=i.table_no
+      a=a+1
 
+  if len(as0)<8 and len(as3)>0:
+      ls1=Usertable.objects.all().filter(table_no__gt=1000).order_by('-table_no')
+      for i in ls1:
+         a1=i.table_no
+      u1=Usertable.objects.all().get(table_no=a1)
+      a=randint(1,8)
+      while 1: 
+                 de=Usertable.objects.all().filter(table_no=a)
+                 if len(de)!=0:
+                       a=a+1
+                       a=a%9
+                       if(a==0):
+                        a=a+1
+                 else:
+                    break
+         		 
+      k1=Kitchen.objects.all().filter(table=a1)
+      for g in k1:
+        g.table=a
+        g.save()
+      us=u1.user
+      u1.delete()
+      unew=Usertable(user=us,table_no=a)
+      unew.save()
 
-
-    		  ########  
+  if u is not None:
+   aa=Usertable.objects.all().filter(user=u)
+   for i in aa:
+       a=i.table_no
+       tb=a
+       if tb>1000:
+         tb1="Table Status :Waiting"
+       else:
+         tb1="Assigned table no. : "+str(a)
+ ########  
   #if(b=="on"):
-        m=Cart.objects.all().filter(user=u)
+  m=Cart.objects.all().filter(user=u)
      
-        for i in m:
+  for i in m:
           h=i.item_name
           p=i.quantity
           d=i.price
-          k=Kitchen(table=a,menu_item=h,quantity=p,status="Recieved")
+          k=Kitchen(table=a,menu_item=h,quantity=p,status="Received")
           k.save()
           bil=Bill(item_name=h,quantity=p,price=d,user=u)
           bil.save()
@@ -640,15 +707,17 @@ def status(request):
        j.orderid+=z[o]
        j.save()
   ######
-  for e in w:
+  w=Usertable.objects.all().filter(user=u)
+  if w is not None: 
+   for e in w:
     qw=e.table_no
-  b1=Kitchen.objects.all().filter(table=qw)
+   if qw is not None:
+    b1=Kitchen.objects.all().filter(table=qw)
   c=RequestContext(request, {
-        'latest_question_list': b1
+        'latest_question_list': b1,'a':tb1
     })
     
   return HttpResponse(t.render(c))
-
 
 
 
@@ -718,6 +787,7 @@ def status(request):
 def thankyou(request,question_id):
     t=loader.get_template('restaurant/thankyou.html')
     #a="off"
+    q=None
     a=request.GET.get('item')
     u= None
     if request.user.is_authenticated():
@@ -735,6 +805,7 @@ def thankyou(request,question_id):
 def thankyou1(request):
     t=loader.get_template('restaurant/thankyou.html')
    # a="off"
+    q=None
     a=request.GET.get('item')
     u= None
     if request.user.is_authenticated():

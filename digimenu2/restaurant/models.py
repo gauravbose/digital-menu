@@ -55,14 +55,14 @@ class Kitchen(models.Model):
     quantity= models.IntegerField()
     orderid=models.CharField(max_length =200)
     NOCHANGE = 'Nochange'
-    RECIEVED = 'Received'
+    RECEIVED = 'Received'
     PREPARING = 'Preparing'
     PREPARED = 'Prepared'
     DELIVERED = 'Delivered'
     UNAVAILABLE='Unavailable'
     status_choices = (
         (NOCHANGE, 'no change'),
-        (RECIEVED, 'recieved'),
+        (RECEIVED, 'received'),
         (PREPARING, 'preparing'),
         (PREPARED, 'prepared'),
         (DELIVERED, 'delivered'),
